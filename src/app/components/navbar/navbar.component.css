@@ -1,0 +1,32 @@
+.logo_navbar {
+  width: 300px;
+}
+.bg {
+  background-color: #090a0b;
+  display: flex;
+  justify-content: center;
+  font-family: "Playfair Display", serif; /* Ajoutez cette ligne pour spécifier la police */
+}
+
+/* Conteneur pour les liens */
+.collapse {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Style pour les liens */
+a {
+  color: #f7f7ff;
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin-right: 20px;
+  font-family: "Playfair Display", serif; /* Ajoutez cette ligne pour spécifier la police */
+}
+
+/* Style de survol pour les liens */
+a:hover {
+  color: #fbc500;
+}
