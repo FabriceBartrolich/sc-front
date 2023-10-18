@@ -1,6 +1,13 @@
-.logo_navbar {
+.my-navbar .logo_navbar {
   width: 300px;
+  margin-left: 20px;
+  margin-right: 50px;
 }
+
+.logo_navbar:hover {
+  transform: scale(1.05); /* Agrandit le lien de 10% au survol */
+}
+
 .bg {
   background-color: #090a0b;
   display: flex;
@@ -22,11 +29,15 @@ a {
   color: #f7f7ff;
   font-weight: bold;
   font-size: 1.4rem;
-  margin-right: 20px;
+  margin-right: 50px;
   font-family: "Playfair Display", serif; /* Ajoutez cette ligne pour spécifier la police */
 }
 
 /* Style de survol pour les liens */
 a:hover {
   color: #fbc500;
+}
+
+.nav-link:hover {
+  transform: scale(1.1); /* Agrandit le lien de 10% au survol */
 }

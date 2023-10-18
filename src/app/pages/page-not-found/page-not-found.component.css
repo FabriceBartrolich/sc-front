@@ -1,0 +1,14 @@
+.button-404 {
+  background-color: #fbc500;
+  color: #090a0b;
+  padding: 10px 20px; /* Ajustez la taille du bouton selon vos besoins */
+  border: none;
+  border-radius: 5px; /* Pour arrondir les coins du bouton */
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem; /* Ajustez la taille de la police selon vos besoins */
+}
+
+.button-404:hover {
+  background-color: #ffd333;
+}

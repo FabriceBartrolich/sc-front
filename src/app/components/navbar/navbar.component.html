@@ -1,50 +1,39 @@
-<nav class="navbar navbar-expand-lg shadow p-3 mb-5 bg">
+<nav class="navbar navbar-expand-lg shadow p-3 mb-5 bg my-navbar">
+  <img
+    class="logo_navbar"
+    src="assets/img/logo-sc-transparent.png"
+    alt="logo Séries Connect"
+    [routerLink]="['/home']"
+  />
   <div class="container">
-    <img
-      class="logo_navbar"
-      src="assets/img/logo-sc-transparent.png"
-      alt="logo Séries Connect"
-      [routerLink]="['/first']"
-    />
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto custom-navbar">
-        <li class="nav-item active custom-nav-item">
-          <a class="nav-link custom-nav-link" [routerLink]="['/home']"
-            >Accueil</a
-          >
-        </li>
-        <li class="nav-item custom-nav-item">
-          <a class="nav-link custom-nav-link" [routerLink]="['/medtech']"
-            >Séries vues</a
-          >
-        </li>
-        <li class="nav-item custom-nav-item">
-          <a class="nav-link custom-nav-link" [routerLink]="['/forum']"
-            >Séries à voir</a
-          >
-        </li>
-        <li class="nav-item custom-nav-item">
-          <a class="nav-link custom-nav-link" [routerLink]="['/signin']"
-            >Inscription</a
-          >
-        </li>
-        <li class="nav-item custom-nav-item">
-          <a class="nav-link custom-nav-link" [routerLink]="['/login']"
-            >Connexion</a
-          >
-        </li>
-      </ul>
-    </div>
+    <ul class="navbar-nav ml-auto custom-navbar">
+      <li class="nav-item active custom-nav-item">
+        <a
+          class="nav-link custom-nav-link navbar-title"
+          [routerLink]="['/home']"
+          >Accueil</a
+        >
+      </li>
+      <li class="nav-item custom-nav-item">
+        <a class="nav-link custom-nav-link" [routerLink]="['/medtech']"
+          >Séries vues</a
+        >
+      </li>
+      <li class="nav-item custom-nav-item">
+        <a class="nav-link custom-nav-link" [routerLink]="['/forum']"
+          >Séries à voir</a
+        >
+      </li>
+      <li class="nav-item custom-nav-item">
+        <a class="nav-link custom-nav-link" [routerLink]="['/subscribe']"
+          >Inscription</a
+        >
+      </li>
+      <li class="nav-item custom-nav-item">
+        <a class="nav-link custom-nav-link" [routerLink]="['/connect']"
+          >Connexion</a
+        >
+      </li>
+    </ul>
   </div>
 </nav>
