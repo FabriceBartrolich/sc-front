@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./page-home.component.css']
 })
 export class PageHomeComponent {
+  isLogged = true;
+
 
 }

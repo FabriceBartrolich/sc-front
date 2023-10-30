@@ -27,12 +27,16 @@
 /* Style pour les liens */
 a {
   color: #f7f7ff;
+
   font-weight: bold;
   font-size: 1.4rem;
   margin-right: 50px;
   font-family: "Playfair Display", serif; /* Ajoutez cette ligne pour spécifier la police */
 }
 
+a:visited {
+  color: #f7f7ff;
+}
 /* Style de survol pour les liens */
 a:hover {
   color: #fbc500;

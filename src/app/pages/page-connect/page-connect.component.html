@@ -1,1 +1,13 @@
-<p>page-connect works!</p>
+<p>page de connexion</p>
+<div *ngIf="!getCurrentUser()">
+  <input
+    type="text"
+    [(ngModel)]="username"
+    placeholder="Nom de l'utilisateur"
+  />
+  <input type="password" [(ngModel)]="password" placeholder="Mot de passe" />
+  <button (click)="login()">Se connecter</button>
+</div>
+<div *ngIf="getCurrentUser()">
+  <p>Bienvenue, {{ getCurrentUser().user }}</p>
+</div>

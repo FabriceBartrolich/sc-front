@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Modal } from 'bootstrap';
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-page-subscribe',
@@ -10,34 +12,41 @@ import { Modal } from 'bootstrap';
 })
 export class PageSubscribeComponent {
   inscriptionForm = this.fb.group({
-    // On crée un groupe de champs
     username: ['', Validators.required],
-    mail: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
   });
 
-  constructor(private fb: FormBuilder, private userService: UserService) {}
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.inscriptionForm.valid) {
-      const newUser: any = this.inscriptionForm.value; // On récupère les données du formulaire
+      const newUser: any = this.inscriptionForm.value;
       console.log('je suis dans le submit, newUser = ', newUser);
-      this.userService.subscribe(newUser).subscribe(() => {
-        // On envoie les données du formulaire au serveur
-        console.log('mise à jour effectué');
-      });
-
-      this.inscriptionForm.reset(); // On vide le formulaire
+      this.userService.subscribe(newUser).subscribe(
+        () => {
+          console.log('mise à jour effectuée');
+          this.inscriptionForm.reset();
+          const modalElement = document.getElementById('subscribeModal');
+          const modalInstance = new Modal(modalElement!);
+          modalInstance.show();
+        },
+        (error) => {
+          console.error('Erreur lors de l’inscription:', error);
+        }
+      );
+    } else {
+      // Afficher un message d'erreur ou des indications pour les champs invalides
     }
-    const modalElement = document.getElementById('subscribeModal');
-    const modalInstance = new Modal(modalElement!);
-    modalInstance.show();
   }
 
   goToHome() {
-    close();
-    window.location.href = 'connect';
+    this.router.navigate(['/connect']);
   }
 }

@@ -1,0 +1,64 @@
+/* Container de la barre de recherche */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid #646464;
+  border-radius: 4px;
+}
+
+/* Style de l'input */
+.search-input {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  flex-grow: 1;
+  border-radius: 4px 0 0 4px;
+  font-family: "Lato", sans-serif;
+}
+
+/* Animation lors de la mise au point de l'input */
+.search-input:focus {
+  outline: 2px solid #fbc500;
+}
+
+/* Style du bouton */
+.search-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #090a0b;
+  border: none;
+  color: #f7f7ff;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  font-family: "Lato", sans-serif;
+}
+
+/* Couleur et taille au survol du bouton */
+.search-button:hover,
+.search-button:active:hover {
+  color: #fbc500;
+  transform: scale(1.1);
+}
+
+/* Taille et couleur normale lorsque le bouton est cliqué */
+.search-button:active,
+.search-button:focus {
+  transform: scale(1);
+  color: #fbc500;
+}
+
+/* Couleur normale lorsque le bouton n'est plus survolé */
+.search-button:not(:hover) {
+  color: #f7f7ff;
+}
+
+/* Animation lors du survol de la barre de recherche */
+.search-bar:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
