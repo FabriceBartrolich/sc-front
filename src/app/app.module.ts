@@ -13,7 +13,9 @@ import { PageAddShowComponent } from './pages/page-add-show/page-add-show.compon
 import { PageShowViewsComponent } from './pages/page-show-views/page-show-views.component';
 import { PageShowWishesComponent } from './pages/page-show-wishes/page-show-wishes.component';
 import { CardComponent } from './components/card/card.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component'; 
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { ShowListComponent } from './components/show-list/show-list.component';
+import { CarouselComponent } from './components/carousel/carousel.component'; 
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     PageShowViewsComponent,
     PageShowWishesComponent,
     CardComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ShowListComponent,
+    CarouselComponent
 
   ],
   imports: [

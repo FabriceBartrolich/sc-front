@@ -1,12 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+
+.image-404 {
+  max-width: 59%;
+  height: auto;
+}
+
+.message-404 {
+  margin: 10px 0;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
 .button-404 {
+  display: inline-block;
+  padding: 10px 20px;
   background-color: #fbc500;
   color: #090a0b;
-  padding: 10px 20px; /* Ajustez la taille du bouton selon vos besoins */
-  border: none;
-  border-radius: 5px; /* Pour arrondir les coins du bouton */
   text-decoration: none;
+  border-radius: 5px;
   font-weight: bold;
-  font-size: 1rem; /* Ajustez la taille de la police selon vos besoins */
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .button-404:hover {

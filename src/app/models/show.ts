@@ -3,6 +3,6 @@ export interface Show {
     title: string;
     is_finished: boolean;
     description: string | null;
-    image: string;
+    poster_path: string;
     id_user: number;
 }

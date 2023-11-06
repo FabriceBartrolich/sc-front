@@ -1,1 +1,24 @@
-<p>card works!</p>
+<div
+  class="card"
+  [routerLink]="['/show-detail', show!.id]"
+  routerLinkActive="active"
+>
+  <div class="card-header">
+    <h5 class="card-title">{{ show!.title || "Titre non disponible" }}</h5>
+  </div>
+  <img
+    [src]="getPoster(show!.poster_path)"
+    alt="{{ show!.title || 'Titre non disponible' }}"
+    class="card-img-top"
+  />
+  <div
+    *ngIf="isUserLoggedIn"
+    class="card-footer"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="button-group">
+      <button (click)="addShowViewedList(show!.id)">Vue</button>
+      <button (click)="addShowWishedList(show!.id)">À Voir</button>
+    </div>
+  </div>
+</div>

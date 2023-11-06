@@ -34,6 +34,20 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
+  isLoggedIn(): boolean {
+// Récupérer ma session dans localStorage
+const me = localStorage.getItem('me');
+//Parser ce que je viens de récupérer si c'est défini
+if (me) {
+  const meParsed = JSON.parse(me);
+  // Si je suis connecté, je retourne true
+  return true;
+} else {
+  return false;
+}
+// Si quelque chose est défini, je retourne true
+ 
+  }
   // getAllUsers(): Observable<User[]> {
   //   return this.http.get<User[]>(`${this.url}user`);
   // }
