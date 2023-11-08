@@ -7,9 +7,9 @@
     <h3>{{ show.name }}</h3>
     <!-- Affiche le nom de la série actuelle dans la boucle -->
     <img [src]="getPoster(show.poster_path)" alt="{{ show.name }} Poster" />
-    <button (click)="addShowViewedList(show.id)">
+    <!-- <button (click)="addShowViewedList(show.id)">
       Ajouter à la liste "Vues"
-    </button>
+    </button> -->
     <button (click)="removeShowViewedList(show.id)">
       Supprimer de la liste "Vues"
     </button>

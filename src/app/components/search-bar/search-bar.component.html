@@ -36,6 +36,12 @@
     >
       Ajouter à la liste des séries vues
     </button>
+    <button
+      *ngIf="isLoggedIn() && !show.is_wished"
+      (click)="addShowWishedList(show.id)"
+    >
+      Ajouter à la liste des séries à voir
+    </button>
     <img [src]="getPoster(show.poster_path)" alt="{{ show.name }} Poster" />
     <!-- Affiche une image pour la série actuelle dans la boucle -->
   </div>

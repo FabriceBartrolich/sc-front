@@ -33,28 +33,24 @@ export class PageShowViewsComponent implements OnInit{
     return 'https://image.tmdb.org/t/p/w300/' + path;
   }
 
-  addShowViewedList(showId: number) {
-    // L'utilisateur est connecté
-    let me: any = localStorage.getItem('me');
-    me = JSON.parse(me);
-    // On récupère le token
+  // addShowViewedList(showId: number) {
+  //   let me: any = localStorage.getItem('me');
+  //   me = JSON.parse(me);
 
-    // On récupère l'id de l'utilisateur
-    const userId = me.id;
-    // On récupère l'id du show
+  //   const userId = me.id;
 
-    fetch(`http://localhost:3000/api/show/viewed/${me.user.id}/${showId}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${me.token}`,
-      },
-      body: JSON.stringify({
-        userId,
-        showId,
-      }),
-    }) .then(() => { this.loadShows();})
-  }
+  //   fetch(`http://localhost:3000/api/show/viewed/${me.user.id}/${showId}`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: `Bearer ${me.token}`,
+  //     },
+  //     body: JSON.stringify({
+  //       userId,
+  //       showId,
+  //     }),
+  //   }) .then(() => { this.loadShows();})
+  // }
 
 removeShowViewedList(showId: number) {
     // L'utilisateur est connecté

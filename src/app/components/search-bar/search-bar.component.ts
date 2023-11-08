@@ -53,7 +53,7 @@ export class SearchBarComponent implements OnInit {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${me.token}`,
+        Authorization: `Bearer ${me?.token}`,
       },
       body: JSON.stringify({ title: this.searchTerm, userId: me?.user?.id }),
     })
@@ -65,6 +65,7 @@ export class SearchBarComponent implements OnInit {
         localStorage.setItem('searchResults', JSON.stringify(this.shows));
         console.log(this.shows);
       });
+
   }
 
   addShowViewedList(showId: number) {
@@ -88,6 +89,50 @@ export class SearchBarComponent implements OnInit {
       }),
     }).then(() => {});
   }
+
+  addShowWishedList(showId: number) {
+  let me: any = localStorage.getItem('me');
+  me = JSON.parse(me);
+
+  const userId = me.id;
+
+  fetch(`http://localhost:3000/api/show/wishedShows`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${me.token}`,
+    },
+    body: JSON.stringify({
+      userId,
+      showId,
+    }),
+
+
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Échec de l'ajout de la série à la liste de souhaits`);
+    }
+    return response.json();
+  })
+  .then(() => {
+    // Traiter la réponse - par exemple, notifier l'utilisateur du succès
+    alert(`Série ajoutée à la liste de souhaits avec succès!`);
+        // this.search();
+        this.shows = this.shows.map((show: any) => {
+          if (show.id === showId) {
+            show.is_wished = true;
+          }
+          return show;
+        });
+  })
+  .catch(error => {
+    // Gérer les erreurs
+    console.error(`Erreur lors de l'ajout de la série à la liste de souhaits:`, error);
+    alert(`Une erreur est survenue lors de l'ajout de la série à la liste de souhaits.`);
+  });
+}
+
 
   getPoster(path: string) {
     return 'https://image.tmdb.org/t/p/w300/' + path;
