@@ -1,52 +1,57 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
-import { Modal } from 'bootstrap';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-page-subscribe',
   templateUrl: './page-subscribe.component.html',
-  styleUrls: ['./page-subscribe.component.css'],
+  styleUrls: ['./page-subscribe.component.css']
 })
 export class PageSubscribeComponent {
-  inscriptionForm = this.fb.group({
-    username: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required],
-  });
+  username: string = '';
+  password: string = '';
 
-  constructor(
-    private fb: FormBuilder,
-    private userService: UserService,
-    private router: Router
-  ) {}
+  constructor(private router: Router) { }
+  login() {
+    console.log('je suis dans login', this.username, this.password);
 
-  ngOnInit(): void {}
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-  onSubmit(): void {
-    if (this.inscriptionForm.valid) {
-      const newUser: any = this.inscriptionForm.value;
-      console.log('je suis dans le submit, newUser = ', newUser);
-      this.userService.subscribe(newUser).subscribe(
-        () => {
-          console.log('mise à jour effectuée');
-          this.inscriptionForm.reset();
-          const modalElement = document.getElementById('subscribeModal');
-          const modalInstance = new Modal(modalElement!);
-          modalInstance.show();
-        },
-        (error) => {
-          console.error('Erreur lors de l’inscription:', error);
-        }
-      );
-    } else {
-      // Afficher un message d'erreur ou des indications pour les champs invalides
+    const raw = JSON.stringify({
+      "username": this.username,
+      "password": this.password
+    });
+
+    const requestOptions: RequestInit = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:3000/api/auth/login", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+        localStorage.setItem('me', JSON.stringify(result));
+        // Redirigez l'utilisateur vers la page d'accueil ici
+        this.router.navigate(['/home']);
+      })
+      .catch(error => console.log('error', error));
+  }
+
+  isConnected(): boolean {
+    const token = localStorage.getItem('token');
+    if (token !== null && token !== '') {
+      return true;
     }
+    return false;
   }
 
-  goToHome() {
-    this.router.navigate(['/connect']);
-  }
+getCurrentUser() : any {
+const me : any = localStorage.getItem('me');
+console.log(me);
+return JSON.parse(me);
+}
+
 }
