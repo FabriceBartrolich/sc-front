@@ -20,29 +20,18 @@
     Rechercher
   </button>
 </div>
+<app-carousel *ngIf="carousel"></app-carousel>
 {{ searchTerm }}
 <!-- <div *ngIf="shows">
   {{ shows.results[0].name }}
 </div> -->
 <div *ngIf="shows.length > 0">
   <!-- Affiche le contenu de cette dis si le tableau shows contient au moins un élément -->
-  <div *ngFor="let show of shows">
-    <!-- Affiche le contenu de cette div pour chaque élément du tableau shows -->
-    <h3>{{ show.name }}</h3>
-    <!-- Affiche le nom de la série actuelle dans la boucle -->
-    <button
-      *ngIf="isLoggedIn() && !show.is_viewed"
-      (click)="addShowViewedList(show.id)"
-    >
-      Ajouter à la liste des séries vues
-    </button>
-    <button
-      *ngIf="isLoggedIn() && !show.is_wished"
-      (click)="addShowWishedList(show.id)"
-    >
-      Ajouter à la liste des séries à voir
-    </button>
-    <img [src]="getPoster(show.poster_path)" alt="{{ show.name }} Poster" />
-    <!-- Affiche une image pour la série actuelle dans la boucle -->
+  <div class="card-container">
+    <app-card
+      *ngFor="let show of shows"
+      [show]="show"
+      (addViewedShow)="zidane($event)"
+    ></app-card>
   </div>
 </div>

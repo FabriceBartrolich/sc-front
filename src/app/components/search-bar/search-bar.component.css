@@ -62,3 +62,26 @@
 .search-bar:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Crée 4 colonnes de taille égale */
+  grid-gap: 10px; /* Espace entre les cartes */
+  /* Ajoutez d'autres styles si nécessaire */
+
+  margin: 0 1rem;
+}
+@media screen and (max-width: 1290px) {
+  .card-container {
+    grid-template-columns: repeat(3, 1fr); /* Crée 2 colonnes de taille égale */
+  }
+}
+@media screen and (max-width: 1120px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr); /* Crée 2 colonnes de taille égale */
+  }
+}
+@media screen and (max-width: 700px) {
+  .card-container {
+    grid-template-columns: repeat(1, 1fr); /* Crée 2 colonnes de taille égale */
+  }
+}

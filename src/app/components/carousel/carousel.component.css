@@ -1,0 +1,41 @@
+.custom-carousel {
+  position: relative;
+  max-width: 600px; /* Ajustez selon votre besoin */
+  margin: auto;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: space-around;
+}
+
+.carousel-slides {
+  display: flex;
+}
+
+.slide {
+  min-width: 100%;
+  transition: transform 0.5s ease;
+  display: none;
+}
+
+.slide.active {
+  display: block;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.prev {
+  left: 0px;
+}
+
+.next {
+  right: 0px;
+}

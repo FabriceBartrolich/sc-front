@@ -1,4 +1,4 @@
-<div
+<!-- <div
   class="card"
   [routerLink]="['/show-detail', show!.id]"
   routerLinkActive="active"
@@ -19,6 +19,59 @@
     <div class="button-group">
       <button (click)="addShowViewedList(show!.id)">Vue</button>
       <button (click)="addShowWishedList(show!.id)">À Voir</button>
+    </div>
+  </div>
+</div> -->
+<!-- <div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="..." class="d-block w-100" alt="..." />
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="..." />
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="..." />
+    </div>
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExample"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExample"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div> -->
+<div class="card-container">
+  <h1>{{ show.name }}</h1>
+  <img [src]="'https://image.tmdb.org/t/p/w300/' + show.poster_path" alt="" />
+  <div class="card-button">
+    <div
+      class="oeil"
+      *ngIf="!show.is_viewed"
+      (click)="addShowViewedList(show.id)"
+    >
+      <img class="default" src="/assets/img/bouton_card_oeil_blanc.png" />
+      <img class="hover" src="/assets/img/bouton_card_oeil_jaune.png" alt="" />
+    </div>
+    <div class="coeur" (click)="addShowWishedList(show.id)">
+      <img
+        class="default"
+        src="/assets/img/bouton_card_coeur_blanc.png"
+        *ngIf="isLoggedIn() && !show.is_viewed"
+      />
+      <img class="hover" src="/assets/img/bouton_card_coeur_jaune.png" alt="" />
     </div>
   </div>
 </div>

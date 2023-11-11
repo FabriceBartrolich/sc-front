@@ -1,4 +1,4 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li
       *ngFor="let slide of slides; let i = index"
@@ -38,4 +38,17 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
+</div> -->
+<div class="custom-carousel">
+  <div class="carousel-slides">
+    <div
+      *ngFor="let slide of slides; let i = index"
+      class="slide"
+      [ngClass]="{ active: i === currentSlideIndex }"
+    >
+      <img [src]="slide" alt="Show image" />
+    </div>
+  </div>
+  <button class="carousel-control prev" (click)="previousSlide()">‹</button>
+  <button class="carousel-control next" (click)="nextSlide()">›</button>
 </div>

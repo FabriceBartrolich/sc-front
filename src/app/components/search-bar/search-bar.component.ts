@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 export class SearchBarComponent implements OnInit {
   shows: any = [];
   searchTerm: string = '';
+  carousel: boolean = true;
 
   constructor(private userService: UserService) {}
 
@@ -31,6 +32,18 @@ export class SearchBarComponent implements OnInit {
     }
   }
 
+  zidane(id: any) {
+    console.log('bonjour', id);
+ this.shows = this.shows.map((show: any) => {
+          console.log(show.id, id);
+          
+          if (show.id === id) {
+            show.is_viewed = true;
+          }
+          return show;
+        });
+  }
+
   // Fonction pour récupérer les données de recherche sauvegardées
   retrieveSearchData() {
     const savedSearchTerm = localStorage.getItem('searchTerm');
@@ -44,10 +57,11 @@ export class SearchBarComponent implements OnInit {
   }
 
   search() {
+    this.carousel = false;
     console.log('je suis dans search', this.searchTerm);
     let me: any = localStorage.getItem('me');
     if (me) {
-    me = JSON.parse(me);
+      me = JSON.parse(me);
     }
     fetch('http://localhost:3000/api/show/search/tvshow', {
       method: 'POST',
@@ -65,7 +79,6 @@ export class SearchBarComponent implements OnInit {
         localStorage.setItem('searchResults', JSON.stringify(this.shows));
         console.log(this.shows);
       });
-
   }
 
   addShowViewedList(showId: number) {
@@ -87,37 +100,66 @@ export class SearchBarComponent implements OnInit {
         userId,
         showId,
       }),
-    }).then(() => {});
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Échec de l'ajout de la série à la liste des séries vues !`
+          );
+        }
+        return response.json();
+      })
+      .then(() => {
+        // Traiter la réponse - par exemple, notifier l'utilisateur du succès
+        alert(`Série ajoutée avec succès à la liste des séries vues !`);
+        // this.search();
+        this.shows = this.shows.map((show: any) => {
+          if (show.id === showId) {
+            show.is_viewed = true;
+          }
+          return show;
+        });
+      })
+      .catch((error) => {
+        // Gérer les erreurs
+        console.error(
+          `Erreur lors de l'ajout de la série à la liste des séries vues:`,
+          error
+        );
+        alert(
+          `Une erreur est survenue lors de l'ajout de la série à la liste des séries vues.`
+        );
+      });
   }
 
   addShowWishedList(showId: number) {
-  let me: any = localStorage.getItem('me');
-  me = JSON.parse(me);
+    let me: any = localStorage.getItem('me');
+    me = JSON.parse(me);
 
-  const userId = me.id;
+    const userId = me.id;
 
-  fetch(`http://localhost:3000/api/show/wishedShows`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${me.token}`,
-    },
-    body: JSON.stringify({
-      userId,
-      showId,
-    }),
-
-
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`Échec de l'ajout de la série à la liste de souhaits`);
-    }
-    return response.json();
-  })
-  .then(() => {
-    // Traiter la réponse - par exemple, notifier l'utilisateur du succès
-    alert(`Série ajoutée à la liste de souhaits avec succès!`);
+    fetch(`http://localhost:3000/api/show/wishedShows`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${me.token}`,
+      },
+      body: JSON.stringify({
+        userId,
+        showId,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(
+            `Échec de l'ajout de la série à la liste des séries à voir !`
+          );
+        }
+        return response.json();
+      })
+      .then(() => {
+        // Traiter la réponse - par exemple, notifier l'utilisateur du succès
+        alert(`Série ajoutée avec succès à la liste des séries à voir !`);
         // this.search();
         this.shows = this.shows.map((show: any) => {
           if (show.id === showId) {
@@ -125,14 +167,18 @@ export class SearchBarComponent implements OnInit {
           }
           return show;
         });
-  })
-  .catch(error => {
-    // Gérer les erreurs
-    console.error(`Erreur lors de l'ajout de la série à la liste de souhaits:`, error);
-    alert(`Une erreur est survenue lors de l'ajout de la série à la liste de souhaits.`);
-  });
-}
-
+      })
+      .catch((error) => {
+        // Gérer les erreurs
+        console.error(
+          `Erreur lors de l'ajout de la série à la liste des séries à voir :`,
+          error
+        );
+        alert(
+          `Une erreur est survenue lors de l'ajout de la série à la liste des séries à voir.`
+        );
+      });
+  }
 
   getPoster(path: string) {
     return 'https://image.tmdb.org/t/p/w300/' + path;

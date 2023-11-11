@@ -5,14 +5,15 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './page-show-views.component.html',
   styleUrls: ['./page-show-views.component.css'],
 })
-export class PageShowViewsComponent implements OnInit{
+export class PageShowViewsComponent implements OnInit {
   shows: any = [];
   ngOnInit(): any {
     this.loadShows();
   }
+
   loadShows() {
     console.log('je suis dans loadShows');
-      let me: any = localStorage.getItem('me');
+    let me: any = localStorage.getItem('me');
     me = JSON.parse(me);
     fetch('http://localhost:3000/api/show/viewed/4', {
       method: 'GET',
@@ -52,7 +53,7 @@ export class PageShowViewsComponent implements OnInit{
   //   }) .then(() => { this.loadShows();})
   // }
 
-removeShowViewedList(showId: number) {
+  removeShowViewedList(showId: number) {
     // L'utilisateur est connecté
     let me: any = localStorage.getItem('me');
     me = JSON.parse(me);
@@ -72,7 +73,11 @@ removeShowViewedList(showId: number) {
         userId,
         showId,
       }),
-    }) .then(() => { this.loadShows();})
+    }).then(() => {
+      // Enlever le show de la liste des shows
+            this.shows = this.shows.filter((show: any) => {
+          return show.id !== showId;
+        });
+    });
   }
-
 }
