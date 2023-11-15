@@ -1,4 +1,4 @@
-<div *ngIf="!getCurrentUser()">
+<!-- <div *ngIf="!getCurrentUser()">
   <input
     type="text"
     [(ngModel)]="username"
@@ -8,10 +8,10 @@
   <button (click)="login()">Se connecter</button>
 </div>
 <div *ngIf="getCurrentUser()">
-  <p>Bienvenue, {{ getCurrentUser().user }}</p>
-</div>
+  <p>Bienvenue, {{ getCurrentUser().user.username }}</p>
+</div> -->
 
-<!-- <form (ngSubmit)="login()" *ngIf="!isConnected()">
+<form (ngSubmit)="login()" *ngIf="!isConnected()">
   <div class="form-group">
     <label for="username">Nom d'utilisateur</label>
     <input
@@ -38,6 +38,4 @@
   </div>
   <button type="submit">Se connecter</button>
 </form>
-<div *ngIf="isConnected()">
-  <p>Bienvenue, {{ getCurrentUser()?.username }}</p>
-</div> -->
+<div *ngIf="isConnected()"></div>

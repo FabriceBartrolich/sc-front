@@ -1,0 +1,28 @@
+<div *ngIf="showDetails; else loading">
+  "bonjour"
+  <!-- Afficher le titre de la série -->
+  <h1>{{ showDetails.name }}</h1>
+
+  <!-- Afficher le poster de la série -->
+  <img
+    [src]="getPoster(showDetails.poster_path)"
+    alt="Poster de {{ showDetails.title }}"
+  />
+  <!-- <img [src]="getPoster(show.poster_path)" alt="{{ show.name }} Poster" /> -->
+  <!-- Afficher la description de la série -->
+  <p>{{ showDetails.overview }}</p>
+
+  <p *ngFor="let genre of showDetails.genres">{{ genre.name }}</p>
+
+  <!-- Afficher si la série est terminée ou non -->
+  <div>
+    <strong>Statut :</strong>
+    {{ showDetails.is_finished ? "Terminée" : "En cours" }}
+  </div>
+
+  <!-- Vous pouvez ajouter plus de détails ici selon ce que vous récupérez dans showDetails -->
+</div>
+
+<ng-template #loading>
+  <p>Chargement des détails de la série...</p>
+</ng-template>

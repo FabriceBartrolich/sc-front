@@ -55,23 +55,42 @@
 </div> -->
 <div class="card-container">
   <h1>{{ show.name }}</h1>
-  <img [src]="'https://image.tmdb.org/t/p/w300/' + show.poster_path" alt="" />
-  <div class="card-button">
+  <img
+    class="pointer"
+    [src]="getPoster(show.poster_path)"
+    alt="Image de {{ show.name }}"
+    (click)="goToDetails()"
+  />
+  <div class="card-button" *ngIf="isLoggedIn()">
     <div
       class="oeil"
-      *ngIf="!show.is_viewed"
+      *ngIf="!show.is_viewed && !show.is_wished"
       (click)="addShowViewedList(show.id)"
+      title="Ajouter à la liste des séries vues"
     >
       <img class="default" src="/assets/img/bouton_card_oeil_blanc.png" />
-      <img class="hover" src="/assets/img/bouton_card_oeil_jaune.png" alt="" />
+      <img
+        class="hover"
+        src="/assets/img/bouton_card_oeil_jaune.png"
+        alt="Ajouter à la liste des séries vues"
+      />
     </div>
-    <div class="coeur" (click)="addShowWishedList(show.id)">
+    <div
+      class="coeur"
+      *ngIf="!show.is_wished && !show.is_viewed"
+      (click)="addShowWishedList(show.id)"
+      title="Ajouter à la liste des séries à voir"
+    >
       <img
         class="default"
         src="/assets/img/bouton_card_coeur_blanc.png"
-        *ngIf="isLoggedIn() && !show.is_viewed"
+        *ngIf="isLoggedIn() && !show.is_wished"
       />
-      <img class="hover" src="/assets/img/bouton_card_coeur_jaune.png" alt="" />
+      <img
+        class="hover"
+        src="/assets/img/bouton_card_coeur_jaune.png"
+        alt="Ajouter à la liste des séries à voir"
+      />
     </div>
   </div>
 </div>

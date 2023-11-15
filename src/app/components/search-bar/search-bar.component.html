@@ -31,7 +31,8 @@
     <app-card
       *ngFor="let show of shows"
       [show]="show"
-      (addViewedShow)="zidane($event)"
+      (addViewedShow)="markShowAsViewed($event)"
+      (addWishedShow)="markShowAsWished($event)"
     ></app-card>
   </div>
 </div>

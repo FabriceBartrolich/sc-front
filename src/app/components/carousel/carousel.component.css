@@ -3,9 +3,11 @@
   max-width: 600px; /* Ajustez selon votre besoin */
   margin: auto;
   overflow: hidden;
-
   display: flex;
   justify-content: space-around;
+  background-color: #646464; /* Couleur de fond du carrousel */
+  border-radius: 30px;
+  border: 3px solid #090a0b;
 }
 
 .carousel-slides {
@@ -15,27 +17,67 @@
 .slide {
   min-width: 100%;
   transition: transform 0.5s ease;
-  display: none;
+  display: none; /* Cache les slides non-actifs */
 }
 
 .slide.active {
-  display: block;
+  display: block; /* Affiche le slide actif */
+}
+
+.slide img {
+  width: 100%; /* Les images prennent toute la largeur du slide */
+  height: auto; /* Hauteur ajustée pour maintenir l'aspect ratio */
+  border-radius: 5px; /* Bordures légèrement arrondies pour les images */
 }
 
 .carousel-control {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
+  background-color: #fbc500; /* Couleur des boutons */
+  color: #090a0b; /* Couleur du texte des boutons */
+  border: 1px solid #090a0b;
   cursor: pointer;
+  border-radius: 50%; /* Boutons circulaires */
+  width: 35px; /* Taille des boutons */
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-control:hover {
+  background-color: #fbd620; /* Couleur au survol */
 }
 
 .prev {
-  left: 0px;
+  left: 10px;
 }
 
 .next {
-  right: 0px;
+  right: 10px;
+}
+
+.arrow {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #090a0b; /* Couleur de la flèche */
+  border-top: 2px solid #090a0b; /* Couleur de la flèche */
+}
+
+.prev .arrow {
+  transform: rotate(-135deg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+.next .arrow {
+  transform: rotate(45deg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
 }

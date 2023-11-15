@@ -7,12 +7,15 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { PageAddShowComponent } from './pages/page-add-show/page-add-show.component';
 import { PageShowViewsComponent } from './pages/page-show-views/page-show-views.component';
 import { PageShowWishesComponent } from './pages/page-show-wishes/page-show-wishes.component';
+import { AuthGuard } from './guards/auth.guard';
+import { PageShowDetailsComponent } from './pages/page-show-details/page-show-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: PageHomeComponent },
-  { path: 'show-views', component: PageShowViewsComponent },
-  { path: 'show-wishes', component: PageShowWishesComponent },
+  { path: 'show-views', component: PageShowViewsComponent, canActivate: [AuthGuard] },
+  { path: 'show-wishes', component: PageShowWishesComponent, canActivate: [AuthGuard] },
+    { path: 'show-details/:id', component: PageShowDetailsComponent },
   { path: 'add-show', component: PageAddShowComponent },
   { path: 'connect', component: PageConnectComponent },
   { path: 'subscribe', component: PageSubscribeComponent },

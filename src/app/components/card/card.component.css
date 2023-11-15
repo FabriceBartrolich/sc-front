@@ -119,6 +119,9 @@ img {
   position: relative;
 }
 
+.pointer {
+  cursor: pointer;
+}
 /* .oeil,
 .coeur {
   position: relative;

@@ -8,17 +8,19 @@ import { Router } from '@angular/router';
 })
 export class PageSubscribeComponent {
   username: string = '';
+  email: string = '';
   password: string = '';
 
   constructor(private router: Router) { }
-  login() {
-    console.log('je suis dans login', this.username, this.password);
+  signUp() {
+    console.log('je suis dans subscribe', this.username, this.email, this.password);
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
       "username": this.username,
+      "email": this.email,
       "password": this.password
     });
 
@@ -29,29 +31,18 @@ export class PageSubscribeComponent {
       redirect: 'follow'
     };
 
-    fetch("http://localhost:3000/api/auth/login", requestOptions)
+    fetch("http://localhost:3000/api/auth/subscribe", requestOptions)
       .then(response => response.json())
       .then(result => {
         console.log(result);
-        localStorage.setItem('me', JSON.stringify(result));
-        // Redirigez l'utilisateur vers la page d'accueil ici
-        this.router.navigate(['/home']);
+          // Redirigez l'utilisateur vers la page d'accueil ici
+        this.router.navigate(['/connect']);
       })
       .catch(error => console.log('error', error));
   }
 
-  isConnected(): boolean {
-    const token = localStorage.getItem('token');
-    if (token !== null && token !== '') {
-      return true;
-    }
-    return false;
-  }
 
-getCurrentUser() : any {
-const me : any = localStorage.getItem('me');
-console.log(me);
-return JSON.parse(me);
-}
+
+
 
 }

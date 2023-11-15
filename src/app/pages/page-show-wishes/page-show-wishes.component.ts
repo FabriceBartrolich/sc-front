@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-page-show-wishes',
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
 })
 export class PageShowWishesComponent {
   shows: any = [];
+
+  constructor(private router: Router) { }
   ngOnInit(): any {
     this.loadShows();
   }
@@ -14,17 +17,30 @@ export class PageShowWishesComponent {
     console.log('je suis dans loadShows');
     let me: any = localStorage.getItem('me');
     me = JSON.parse(me);
-    fetch('http://localhost:3000/api/show/wished/4', {
+    console.log('me', me);
+    
+    fetch(`http://localhost:3000/api/show/wished/${me.user.id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${me.token}`,
       },
     })
-      .then((response) => response.json())
+     .then((response) => response.json())
       .then((result) => {
-        this.shows = result;
-        console.log(this.shows);
+        console.log('result', result);
+        
+        if (result.statusCode == 401) {
+          console.log("Tu n'est pas connecté");
+          this.router.navigate(['/connect']); 
+          localStorage.removeItem('me');
+        } else {
+          this.shows = result;
+          console.log('Bonjour', result);
+        }
+      })
+      .catch((error) => {
+        console.log('Une erreur a été rencontrée', error);
       });
   }
 
@@ -36,6 +52,7 @@ export class PageShowWishesComponent {
   removeShowWishedList(showId: number) {
     // L'utilisateur est connecté
     let me: any = localStorage.getItem('me');
+
     me = JSON.parse(me);
     // On récupère le token
 
@@ -53,10 +70,28 @@ export class PageShowWishesComponent {
         userId,
         showId,
       }),
-    }).then(() => {
-              this.shows = this.shows.filter((show: any) => {
-          return show.id !== showId;
-        });
-    });
+    }).then((response) => {
+  if (!response.ok && response.status == 401) {
+    console.log("Tu n'es pas connecté");
+    this.router.navigate(['/connect']);
+    localStorage.removeItem('me');
+  } else if (response.ok) {
+    this.shows = this.shows.filter((show: any) => show.id !== showId);
   }
+  // return response.json(); // facultatif, selon le besoin de traiter la réponse
+})
+.catch((error) => {
+  console.log('Une erreur est survenue lors de la suppression de la série', error);
+});
+}
+  //   .then(() => {
+  //     // Enlever le show de la liste des shows
+  //     this.shows = this.shows.filter((show: any) => {
+  //       return show.id !== showId;
+  //     });
+  //   });
+  // }
+
+
+
 }

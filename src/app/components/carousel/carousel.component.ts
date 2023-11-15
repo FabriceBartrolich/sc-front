@@ -1,22 +1,36 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent implements OnInit, OnDestroy {
   popularShows: string[] = [];
   slides: string[] = [];
   currentSlideIndex: number = 0;
+  private autoSlideInterval: any;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
     this.getPopularShows();
-    
+     this.startAutoSlide();
   }
+
+    startAutoSlide() {
+    this.autoSlideInterval = setInterval(() => {
+      this.nextSlide();
+    }, 20000); // 20 secondes
+  }
+
+  ngOnDestroy(): void {
+    if (this.autoSlideInterval) {
+      clearInterval(this.autoSlideInterval);
+    }
+  }
+
   nextSlide() {
     this.currentSlideIndex = (this.currentSlideIndex + 1) % this.slides.length;
   }

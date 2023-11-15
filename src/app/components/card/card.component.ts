@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Show } from 'src/app/models/show';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,10 +19,10 @@ export class CardComponent implements OnInit{
   shows: Show[] = []
   
   @Output() addViewedShow = new EventEmitter<number>();
-
+ @Output() addWishedShow = new EventEmitter<number>();
   
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService, private router: Router) { }
   ngOnInit(): void {
     console.log('dans la carte ', this.show)
   }
@@ -71,7 +72,7 @@ addShowViewedList(showId: number | undefined) {
       })
       .then(() => {
         // Traiter la réponse - par exemple, notifier l'utilisateur du succès
-        console.log("Bonjour");
+        // console.log("Bonjour");
         
         this.addViewedShow.emit(showId);
         console.log(this.shows);
@@ -81,6 +82,8 @@ addShowViewedList(showId: number | undefined) {
           
           if (show.id === showId) {
             show.is_viewed = true;
+             show.is_wished = true;
+            
           }
           return show;
         });
@@ -131,10 +134,16 @@ addShowViewedList(showId: number | undefined) {
       })
       .then(() => {
         // Traiter la réponse - par exemple, notifier l'utilisateur du succès
-        alert(`Série ajoutée avec succès à la liste des séries à voir !`);
+        // alert(`Série ajoutée avec succès à la liste des séries à voir !`);
+        // this.search();
+        this.addWishedShow.emit(showId);
+        console.log(this.shows);
         // this.search();
         this.shows = this.shows.map((show: any) => {
+          console.log(show.id, showId);
+          
           if (show.id === showId) {
+             show.is_viewed = true;
             show.is_wished = true;
           }
           return show;
@@ -155,10 +164,22 @@ addShowViewedList(showId: number | undefined) {
     return this.userService.isLoggedIn();
   }
   
-
+  getPoster(path: string) {
+      console.log('image', path);
+    if (!path ) {
+return 'https://via.placeholder.com/300x450?text=No+image+available';
+    }
+  
+    
+    return 'https://image.tmdb.org/t/p/w300/' + path;
+  }
 // getPoster(poster_path: string): string {
 //   return 'https://image.tmdb.org/t/p/w300/' + poster_path;
 // }
+
+goToDetails() {
+this.router.navigate(['/show-details', this.show.id])
+}
 
 }
 

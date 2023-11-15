@@ -50,8 +50,9 @@ export class PageConnectComponent {
 
 getCurrentUser() : any {
 const me : any = localStorage.getItem('me');
-console.log(me);
-return JSON.parse(me);
+const parsedMe = JSON.parse(me);
+console.log(parsedMe);
+return parsedMe;
 }
 
 }

@@ -1,15 +1,36 @@
-<div *ngIf="!getCurrentUser()">
+<div>
+  <label for="username">Nom d'utilisateur: </label>
   <input
     type="text"
+    id="username"
     [(ngModel)]="username"
     placeholder="Nom de l'utilisateur"
   />
-  <input type="password" [(ngModel)]="password" placeholder="Mot de passe" />
-  <button (click)="login()">Se connecter</button>
 </div>
-<div *ngIf="getCurrentUser()">
-  <p>Bienvenue, {{ getCurrentUser().user }}</p>
+<div>
+  <label for="email">Adresse mail : </label>
+  <input
+    type="email"
+    id="email"
+    [(ngModel)]="email"
+    placeholder="Adresse mail"
+  />
 </div>
+
+<div>
+  <label for="password">Mot de passe: </label>
+  <input type="password" id="password" />
+</div>
+<div>
+  <label for="password">Confirmer mot de passe : </label>
+  <input
+    type="password"
+    id="password"
+    [(ngModel)]="password"
+    placeholder="Confirmer mot de passe"
+  />
+</div>
+<button (click)="signUp()">S'inscrire</button>
 
 <!-- <form (ngSubmit)="login()" *ngIf="!isConnected()">
   <div class="form-group">

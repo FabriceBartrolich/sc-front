@@ -15,7 +15,7 @@ export class SearchBarComponent implements OnInit {
 
   // À l'initialisation, vérifiez si des résultats de recherche sont stockés
   ngOnInit() {
-    this.retrieveSearchData();
+    // this.retrieveSearchData();
     // this.loadViewedShows();
   }
 
@@ -32,8 +32,8 @@ export class SearchBarComponent implements OnInit {
     }
   }
 
-  zidane(id: any) {
-    console.log('bonjour', id);
+  markShowAsViewed(id: any) {
+    // console.log('bonjour', id);
  this.shows = this.shows.map((show: any) => {
           console.log(show.id, id);
           
@@ -44,17 +44,28 @@ export class SearchBarComponent implements OnInit {
         });
   }
 
-  // Fonction pour récupérer les données de recherche sauvegardées
-  retrieveSearchData() {
-    const savedSearchTerm = localStorage.getItem('searchTerm');
-    const savedResults = localStorage.getItem('searchResults');
-    if (savedSearchTerm) {
-      this.searchTerm = savedSearchTerm;
-    }
-    if (savedResults) {
-      this.shows = JSON.parse(savedResults);
-    }
+    markShowAsWished(id: any) {
+    // console.log('bonjour', id);
+ this.shows = this.shows.map((show: any) => {
+          console.log(show.id, id);
+          
+          if (show.id === id) {
+            show.is_wished = true;
+          }
+          return show;
+        });
   }
+  // Fonction pour récupérer les données de recherche sauvegardées
+  // retrieveSearchData() {
+  //   const savedSearchTerm = localStorage.getItem('searchTerm');
+  //   const savedResults = localStorage.getItem('searchResults');
+  //   if (savedSearchTerm) {
+  //     this.searchTerm = savedSearchTerm;
+  //   }
+  //   if (savedResults) {
+  //     this.shows = JSON.parse(savedResults);
+  //   }
+  // }
 
   search() {
     this.carousel = false;
@@ -181,6 +192,12 @@ export class SearchBarComponent implements OnInit {
   }
 
   getPoster(path: string) {
+      console.log('image', path);
+    if (!path ) {
+return 'https://via.placeholder.com/300x450?text=No+image+available';
+    }
+  
+    
     return 'https://image.tmdb.org/t/p/w300/' + path;
   }
 }
