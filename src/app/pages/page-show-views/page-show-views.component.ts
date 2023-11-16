@@ -14,6 +14,12 @@ export class PageShowViewsComponent implements OnInit {
     this.loadShows();
   }
 
+monShow= {
+  name: 'The Walking Dead',
+  poster_path: '/rqeYMLryjcawh2JeRpCVUDXYM5b.jpg',
+  id: 1396,
+}
+
   loadShows() {
     // console.log('je suis dans loadShows');
     let me: any = localStorage.getItem('me');
@@ -99,6 +105,9 @@ export class PageShowViewsComponent implements OnInit {
   console.log('Une erreur est survenue lors de la suppression de la série', error);
 });
 }
+
+
+
   //   .then(() => {
   //     // Enlever le show de la liste des shows
   //     this.shows = this.shows.filter((show: any) => {

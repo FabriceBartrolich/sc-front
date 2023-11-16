@@ -69,7 +69,6 @@ export class SearchBarComponent implements OnInit {
 
   search() {
     this.carousel = false;
-    console.log('je suis dans search', this.searchTerm);
     let me: any = localStorage.getItem('me');
     if (me) {
       me = JSON.parse(me);
@@ -85,10 +84,10 @@ export class SearchBarComponent implements OnInit {
       .then((response) => response.json())
       .then((result) => {
         this.shows = result.results;
-        console.log(this.shows);
+        // console.log(this.shows);
         localStorage.setItem('searchTerm', this.searchTerm);
         localStorage.setItem('searchResults', JSON.stringify(this.shows));
-        console.log(this.shows);
+        // console.log(this.shows);
       });
   }
 
@@ -200,4 +199,8 @@ return 'https://via.placeholder.com/300x450?text=No+image+available';
     
     return 'https://image.tmdb.org/t/p/w300/' + path;
   }
+
+  scrollToTop() {
+  window.scrollTo(0, 0);
+}
 }

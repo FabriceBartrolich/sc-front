@@ -1,26 +1,36 @@
-<div *ngIf="showDetails; else loading">
-  "bonjour"
-  <!-- Afficher le titre de la série -->
-  <h1>{{ showDetails.name }}</h1>
-
-  <!-- Afficher le poster de la série -->
+<div *ngIf="showDetails; else loading" class="show-details-container">
   <img
+    class="poster"
     [src]="getPoster(showDetails.poster_path)"
     alt="Poster de {{ showDetails.title }}"
   />
-  <!-- <img [src]="getPoster(show.poster_path)" alt="{{ show.name }} Poster" /> -->
-  <!-- Afficher la description de la série -->
-  <p>{{ showDetails.overview }}</p>
 
-  <p *ngFor="let genre of showDetails.genres">{{ genre.name }}</p>
+  <div class="details">
+    <h1 class="title">{{ showDetails.name }}</h1>
 
-  <!-- Afficher si la série est terminée ou non -->
-  <div>
-    <strong>Statut :</strong>
-    {{ showDetails.is_finished ? "Terminée" : "En cours" }}
+    <div class="genre">
+      <span *ngFor="let genre of showDetails.genres; let isLast = last">
+        {{ genre.name }}<span *ngIf="!isLast">, </span>
+      </span>
+    </div>
+
+    <h2 class="synopsis-title">Synopsis</h2>
+    <p class="synopsis">{{ showDetails.overview }}</p>
+
+    <p>
+      <strong>Nombre d'épisodes :</strong> {{ showDetails.number_of_episodes }}
+    </p>
+    <p>
+      <strong>Nombre de saisons :</strong> {{ showDetails.number_of_seasons }}
+    </p>
+
+    <h2 class="status-title">Statut</h2>
+    <div class="status">
+      <strong>{{
+        showDetails.status === "Ended" ? "Terminée" : "En cours"
+      }}</strong>
+    </div>
   </div>
-
-  <!-- Vous pouvez ajouter plus de détails ici selon ce que vous récupérez dans showDetails -->
 </div>
 
 <ng-template #loading>

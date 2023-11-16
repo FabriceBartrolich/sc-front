@@ -27,15 +27,6 @@ export class CardComponent implements OnInit{
     console.log('dans la carte ', this.show)
   }
 
-  // addShowViewedList(showId: number) {
-  //   // Ici, tu ajoutes le code pour ajouter la série à la liste des séries vues
-  //   console.log('Série ajoutée à la liste des séries vues', showId);
-  // }
-
-  // addShowWishedList(showId: number) {
-  //   // Ici, tu ajoutes le code pour ajouter la série à la liste de souhaits
-  //   console.log('Série ajoutée à la liste de souhaits', showId);
-  // }
   
 addShowViewedList(showId: number | undefined) {
     // L'utilisateur est connecté
@@ -160,6 +151,79 @@ addShowViewedList(showId: number | undefined) {
         );
       });
   }
+
+removeShowViewedList(showId: number | undefined) {
+    // L'utilisateur est connecté
+    let me: any = localStorage.getItem('me');
+    me = JSON.parse(me);
+    // On récupère le token
+
+    // On récupère l'id de l'utilisateur
+    const userId = me.id;
+    // On récupère l'id du show
+
+    fetch(`http://localhost:3000/api/show/viewed/${me.user.id}/${showId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${me.token}`,
+      },
+      body: JSON.stringify({
+        userId,
+        showId,
+      }),
+    }).then((response) => {
+  if (!response.ok && response.status == 401) {
+    console.log("Tu n'es pas connecté");
+    this.router.navigate(['/connect']);
+    localStorage.removeItem('me');
+  } else if (response.ok) {
+    this.shows = this.shows.filter((show: any) => show.id !== showId);
+  }
+  // return response.json(); // facultatif, selon le besoin de traiter la réponse
+})
+.catch((error) => {
+  console.log('Une erreur est survenue lors de la suppression de la série', error);
+});
+}
+
+removeShowWishedList(showId: number | undefined) {
+    // L'utilisateur est connecté
+    let me: any = localStorage.getItem('me');
+
+    me = JSON.parse(me);
+    // On récupère le token
+
+    // On récupère l'id de l'utilisateur
+    const userId = me.id;
+    // On récupère l'id du show
+
+    fetch(`http://localhost:3000/api/show/wished/${me.user.id}/${showId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${me.token}`,
+      },
+      body: JSON.stringify({
+        userId,
+        showId,
+      }),
+    }).then((response) => {
+  if (!response.ok && response.status == 401) {
+    console.log("Tu n'es pas connecté");
+    this.router.navigate(['/connect']);
+    localStorage.removeItem('me');
+  } else if (response.ok) {
+    this.shows = this.shows.filter((show: any) => show.id !== showId);
+  }
+  // return response.json(); // facultatif, selon le besoin de traiter la réponse
+})
+.catch((error) => {
+  console.log('Une erreur est survenue lors de la suppression de la série', error);
+});
+}
+
+
   isLoggedIn() {
     return this.userService.isLoggedIn();
   }

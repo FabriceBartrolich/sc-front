@@ -1,14 +1,3 @@
-<!-- <div class="input-group">
-  <input
-    type="search"
-    class="form-control rounded"
-    placeholder="Rechercher une série par son titre"
-    aria-label="Search"
-    aria-describedby="search-addon"
-  />
-  <button type="button" class="btn my-button">Rechercher</button>
-</div> -->
-
 <div class="search-bar">
   <input
     type="search"
@@ -21,12 +10,8 @@
   </button>
 </div>
 <app-carousel *ngIf="carousel"></app-carousel>
-{{ searchTerm }}
-<!-- <div *ngIf="shows">
-  {{ shows.results[0].name }}
-</div> -->
+<!-- {{ searchTerm }} -->
 <div *ngIf="shows.length > 0">
-  <!-- Affiche le contenu de cette dis si le tableau shows contient au moins un élément -->
   <div class="card-container">
     <app-card
       *ngFor="let show of shows"
@@ -35,4 +20,5 @@
       (addWishedShow)="markShowAsWished($event)"
     ></app-card>
   </div>
+  <button class="back-to-top" (click)="scrollToTop()">Retour en haut</button>
 </div>

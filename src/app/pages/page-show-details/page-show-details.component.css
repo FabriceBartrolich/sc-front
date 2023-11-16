@@ -1,0 +1,45 @@
+.show-details-container {
+  display: flex;
+  align-items: flex-start; /* Ajuste les éléments en haut */
+  width: 60%;
+  margin: 20px auto;
+}
+
+.poster {
+  max-width: 100%; /* Assure que l'image ne dépasse pas sa taille container */
+  max-height: 100%; /* Assure que l'image ne dépasse pas sa taille container */
+  border: 3px solid #fbc500;
+  box-shadow: 15px 15px 15px rgba(100, 100, 100, 0.5);
+  margin-right: 20px; /* Espace entre l'image et le contenu textuel */
+}
+
+.details {
+  flex-grow: 1; /* Permet au contenu textuel de remplir l'espace restant */
+}
+.title {
+  font-size: 2.5em;
+  color: #090a0b;
+  margin-bottom: 10px;
+}
+
+.genre {
+  font-size: 1em;
+  color: #646464;
+  margin-bottom: 20px;
+}
+
+.synopsis-title,
+.status-title {
+  font-size: 1.5em;
+  color: #646464;
+  margin-bottom: 5px;
+}
+
+.synopsis,
+.status {
+  font-size: 1em;
+  color: #090a0b;
+  margin-bottom: 20px;
+  text-align: justify; /* Justifie le texte de la description */
+  text-justify: inter-word; /* Améliore la justification en ajustant l'espacement entre les mots */
+}

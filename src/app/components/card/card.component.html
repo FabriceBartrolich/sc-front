@@ -1,58 +1,3 @@
-<!-- <div
-  class="card"
-  [routerLink]="['/show-detail', show!.id]"
-  routerLinkActive="active"
->
-  <div class="card-header">
-    <h5 class="card-title">{{ show!.title || "Titre non disponible" }}</h5>
-  </div>
-  <img
-    [src]="getPoster(show!.poster_path)"
-    alt="{{ show!.title || 'Titre non disponible' }}"
-    class="card-img-top"
-  />
-  <div
-    *ngIf="isUserLoggedIn"
-    class="card-footer"
-    (click)="$event.stopPropagation()"
-  >
-    <div class="button-group">
-      <button (click)="addShowViewedList(show!.id)">Vue</button>
-      <button (click)="addShowWishedList(show!.id)">À Voir</button>
-    </div>
-  </div>
-</div> -->
-<!-- <div id="carouselExample" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="..." />
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="..." />
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="..." />
-    </div>
-  </div>
-  <button
-    class="carousel-control-prev"
-    type="button"
-    data-bs-target="#carouselExample"
-    data-bs-slide="prev"
-  >
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button
-    class="carousel-control-next"
-    type="button"
-    data-bs-target="#carouselExample"
-    data-bs-slide="next"
-  >
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div> -->
 <div class="card-container">
   <h1>{{ show.name }}</h1>
   <img
@@ -68,9 +13,12 @@
       (click)="addShowViewedList(show.id)"
       title="Ajouter à la liste des séries vues"
     >
-      <img class="default" src="/assets/img/bouton_card_oeil_blanc.png" />
       <img
-        class="hover"
+        class="pointer default"
+        src="/assets/img/bouton_card_oeil_blanc.png"
+      />
+      <img
+        class="pointer hover"
         src="/assets/img/bouton_card_oeil_jaune.png"
         alt="Ajouter à la liste des séries vues"
       />
@@ -82,14 +30,45 @@
       title="Ajouter à la liste des séries à voir"
     >
       <img
-        class="default"
+        class="pointer default"
         src="/assets/img/bouton_card_coeur_blanc.png"
-        *ngIf="isLoggedIn() && !show.is_wished"
       />
       <img
-        class="hover"
+        class="pointer hover"
         src="/assets/img/bouton_card_coeur_jaune.png"
         alt="Ajouter à la liste des séries à voir"
+      />
+    </div>
+    <div
+      class="coeur"
+      *ngIf="show.is_wished && !show.is_viewed"
+      (click)="removeShowWishedList(show.id)"
+      title="Supprimer de la liste des séries à voir"
+    >
+      <img
+        class="pointer default"
+        src="/assets/img/bouton_card_coeur_blanc.png"
+      />
+      <img
+        class="pointer hover"
+        src="/assets/img/bouton_card_coeur_jaune.png"
+        alt="Ajouter à la liste des séries à voir"
+      />
+    </div>
+    <div
+      class="oeil"
+      *ngIf="show.is_viewed && !show.is_wished"
+      (click)="removeShowViewedList(show.id)"
+      title="Ajouter à la liste des séries vues"
+    >
+      <img
+        class="pointer default"
+        src="/assets/img/bouton_card_oeil_blanc.png"
+      />
+      <img
+        class="pointer hover"
+        src="/assets/img/bouton_card_oeil_jaune.png"
+        alt="Supprimer de la liste des séries vues"
       />
     </div>
   </div>
