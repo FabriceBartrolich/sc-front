@@ -55,17 +55,7 @@ export class SearchBarComponent implements OnInit {
           return show;
         });
   }
-  // Fonction pour récupérer les données de recherche sauvegardées
-  // retrieveSearchData() {
-  //   const savedSearchTerm = localStorage.getItem('searchTerm');
-  //   const savedResults = localStorage.getItem('searchResults');
-  //   if (savedSearchTerm) {
-  //     this.searchTerm = savedSearchTerm;
-  //   }
-  //   if (savedResults) {
-  //     this.shows = JSON.parse(savedResults);
-  //   }
-  // }
+
 
   search() {
     this.carousel = false;
@@ -84,111 +74,112 @@ export class SearchBarComponent implements OnInit {
       .then((response) => response.json())
       .then((result) => {
         this.shows = result.results;
-        // console.log(this.shows);
+
         localStorage.setItem('searchTerm', this.searchTerm);
         localStorage.setItem('searchResults', JSON.stringify(this.shows));
-        // console.log(this.shows);
-      });
+         });
   }
 
-  addShowViewedList(showId: number) {
-    // L'utilisateur est connecté
-    let me: any = localStorage.getItem('me');
-    me = JSON.parse(me);
+  // addShowViewedList(showId: number) {
+  //   // L'utilisateur est connecté
+  //       console.log("AddShowViewedList 2");
+  //   let me: any = localStorage.getItem('me');
+  //   me = JSON.parse(me);
 
-    // On récupère l'id de l'utilisateur
-    const userId = me.id;
-    // On récupère l'id du show
+  //   // On récupère l'id de l'utilisateur
+  //   const userId = me.id;
+  //   // On récupère l'id du show
 
-    fetch(`http://localhost:3000/api/show/viewedShows`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${me.token}`,
-      },
-      body: JSON.stringify({
-        userId,
-        showId,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            `Échec de l'ajout de la série à la liste des séries vues !`
-          );
-        }
-        return response.json();
-      })
-      .then(() => {
-        // Traiter la réponse - par exemple, notifier l'utilisateur du succès
-        alert(`Série ajoutée avec succès à la liste des séries vues !`);
-        // this.search();
-        this.shows = this.shows.map((show: any) => {
-          if (show.id === showId) {
-            show.is_viewed = true;
-          }
-          return show;
-        });
-      })
-      .catch((error) => {
-        // Gérer les erreurs
-        console.error(
-          `Erreur lors de l'ajout de la série à la liste des séries vues:`,
-          error
-        );
-        alert(
-          `Une erreur est survenue lors de l'ajout de la série à la liste des séries vues.`
-        );
-      });
-  }
+  //   fetch(`http://localhost:3000/api/show/viewedShows`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: `Bearer ${me.token}`,
+  //     },
+  //     body: JSON.stringify({
+  //       userId,
+  //       showId,
+  //     }),
+  //   })
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error(
+  //           `Échec de l'ajout de la série à la liste des séries vues !`
+  //         );
+  //       }
+  //       return response.json();
+  //     })
+  //     .then(() => {
+  //       // Traiter la réponse - par exemple, notifier l'utilisateur du succès
+  //       alert(`Série ajoutée avec succès à la liste des séries vues !`);
+  //       // this.search();
+  //       this.shows = this.shows.map((show: any) => {
+  //         if (show.id === showId) {
+  //           show.is_viewed = true;
+  //         }
+  //         return show;
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       // Gérer les erreurs
+  //       console.error(
+  //         `Erreur lors de l'ajout de la série à la liste des séries vues:`,
+  //         error
+  //       );
+  //       alert(
+  //         `Une erreur est survenue lors de l'ajout de la série à la liste des séries vues.`
+  //       );
+  //     });
+  // }
 
-  addShowWishedList(showId: number) {
-    let me: any = localStorage.getItem('me');
-    me = JSON.parse(me);
+  // addShowWishedList(showId: number) {
+  //           console.log("addShowWishedList 2");
+  //   let me: any = localStorage.getItem('me');
+  //   me = JSON.parse(me);
 
-    const userId = me.id;
+  //   const userId = me.id;
 
-    fetch(`http://localhost:3000/api/show/wishedShows`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${me.token}`,
-      },
-      body: JSON.stringify({
-        userId,
-        showId,
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            `Échec de l'ajout de la série à la liste des séries à voir !`
-          );
-        }
-        return response.json();
-      })
-      .then(() => {
-        // Traiter la réponse - par exemple, notifier l'utilisateur du succès
-        alert(`Série ajoutée avec succès à la liste des séries à voir !`);
-        // this.search();
-        this.shows = this.shows.map((show: any) => {
-          if (show.id === showId) {
-            show.is_wished = true;
-          }
-          return show;
-        });
-      })
-      .catch((error) => {
-        // Gérer les erreurs
-        console.error(
-          `Erreur lors de l'ajout de la série à la liste des séries à voir :`,
-          error
-        );
-        alert(
-          `Une erreur est survenue lors de l'ajout de la série à la liste des séries à voir.`
-        );
-      });
-  }
+  //   fetch(`http://localhost:3000/api/show/wishedShows`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: `Bearer ${me.token}`,
+  //     },
+  //     body: JSON.stringify({
+  //       userId,
+  //       showId,
+  //     }),
+  //   })
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error(
+  //           `Échec de l'ajout de la série à la liste des séries à voir !`
+  //         );
+  //       }
+  //       return response.json();
+  //     })
+  //     .then(() => {
+  //       // Traiter la réponse - par exemple, notifier l'utilisateur du succès
+  //       alert(`Série ajoutée avec succès à la liste des séries à voir !`);
+  //       // this.search();
+  //       this.shows = this.shows.map((show: any) => {
+  //         if (show.id === showId) {
+  //           show.is_wished = true;
+  //         }
+  //         return show;
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       // Gérer les erreurs
+  //       console.error(
+  //         `Erreur lors de l'ajout de la série à la liste des séries à voir :`,
+  //         error
+  //       );
+  //       alert(
+  //         `Une erreur est survenue lors de l'ajout de la série à la liste des séries à voir.`
+  //       );
+  //     });
+  // }
 
   getPoster(path: string) {
       console.log('image', path);

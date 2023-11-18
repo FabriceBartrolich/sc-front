@@ -15,6 +15,7 @@
   <div class="card-container">
     <app-card
       *ngFor="let show of shows"
+      mode="search"
       [show]="show"
       (addViewedShow)="markShowAsViewed($event)"
       (addWishedShow)="markShowAsWished($event)"

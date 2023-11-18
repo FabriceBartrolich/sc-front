@@ -1,19 +1,12 @@
-<!-- <button (click)="loadShows()">Charger les séries</button> -->
 <div *ngIf="shows.length > 0">
-  "Bonjour à tous !"
-  <!-- Affiche le contenu de cette dis si le tableau shows contient au moins un élément -->
-  <div *ngFor="let show of shows">
-    <!-- Affiche le contenu de cette div pour chaque élément du tableau shows -->
-    <h3>{{ show.name }}</h3>
-    <!-- Affiche le nom de la série actuelle dans la boucle -->
-    <img [src]="getPoster(show.poster_path)" alt="{{ show.name }} Poster" />
-    <!-- <button (click)="addShowViewedList(show.id)">
-      Ajouter à la liste "Vues"
-    </button> -->
-    <button (click)="removeShowViewedList(show.id)">
-      Supprimer de la liste "Vues"
-    </button>
-    <!-- Affiche une image pour la série actuelle dans la boucle -->
+  <div class="card-container">
+    <app-card
+      *ngFor="let show of shows"
+      [show]="show"
+      (removeViewedShow)="markShowAsRemovedViewed($event)"
+      mode="viewed"
+      titleId="title"
+    ></app-card>
   </div>
+  <button class="back-to-top" (click)="scrollToTop()">Retour en haut</button>
 </div>
-<!-- <app-card [show]="monShow"></app-card> -->

@@ -1,5 +1,5 @@
 <div class="card-container">
-  <h1>{{ show.name }}</h1>
+  <h1>{{ show[titleId] }}</h1>
   <img
     class="pointer"
     [src]="getPoster(show.poster_path)"
@@ -9,7 +9,7 @@
   <div class="card-button" *ngIf="isLoggedIn()">
     <div
       class="oeil"
-      *ngIf="!show.is_viewed && !show.is_wished"
+      *ngIf="!show.is_viewed && !show.is_wished && mode == 'search'"
       (click)="addShowViewedList(show.id)"
       title="Ajouter à la liste des séries vues"
     >
@@ -25,7 +25,7 @@
     </div>
     <div
       class="coeur"
-      *ngIf="!show.is_wished && !show.is_viewed"
+      *ngIf="!show.is_wished && !show.is_viewed && mode == 'search'"
       (click)="addShowWishedList(show.id)"
       title="Ajouter à la liste des séries à voir"
     >
@@ -41,33 +41,33 @@
     </div>
     <div
       class="coeur"
-      *ngIf="show.is_wished && !show.is_viewed"
+      *ngIf="(show.is_wished && show.is_viewed) || mode == 'wished'"
       (click)="removeShowWishedList(show.id)"
       title="Supprimer de la liste des séries à voir"
     >
       <img
         class="pointer default"
-        src="/assets/img/bouton_card_coeur_blanc.png"
+        src="/assets/img/bouton_card_corbeille_blanc.png"
       />
       <img
         class="pointer hover"
-        src="/assets/img/bouton_card_coeur_jaune.png"
-        alt="Ajouter à la liste des séries à voir"
+        src="/assets/img/bouton_card_corbeille_jaune.png"
+        alt="Supprimer de la liste des séries à voir"
       />
     </div>
     <div
       class="oeil"
-      *ngIf="show.is_viewed && !show.is_wished"
+      *ngIf="(show.is_viewed && show.is_wished) || mode == 'viewed'"
       (click)="removeShowViewedList(show.id)"
-      title="Ajouter à la liste des séries vues"
+      title="Supprimer de la liste des séries vues"
     >
       <img
         class="pointer default"
-        src="/assets/img/bouton_card_oeil_blanc.png"
+        src="/assets/img/bouton_card_corbeille_blanc.png"
       />
       <img
         class="pointer hover"
-        src="/assets/img/bouton_card_oeil_jaune.png"
+        src="/assets/img/bouton_card_corbeille_jaune.png"
         alt="Supprimer de la liste des séries vues"
       />
     </div>

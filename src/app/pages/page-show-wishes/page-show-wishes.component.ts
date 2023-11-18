@@ -91,7 +91,11 @@ export class PageShowWishesComponent {
   //     });
   //   });
   // }
+markShowAsRemovedWished(showId: number) {
+  this.shows = this.shows.filter((show: any) => show.id !== showId);
+}
 
-
-
+  scrollToTop() {
+  window.scrollTo(0, 0);
+}
 }

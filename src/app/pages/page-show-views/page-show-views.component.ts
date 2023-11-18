@@ -96,9 +96,13 @@ monShow= {
     console.log("Tu n'es pas connecté");
     this.router.navigate(['/connect']);
     localStorage.removeItem('me');
-  } else if (response.ok) {
+  } else  {
+    console.log('La série a bien été supprimée');
+    
     this.shows = this.shows.filter((show: any) => show.id !== showId);
   }
+  console.log("gerard");
+  
   // return response.json(); // facultatif, selon le besoin de traiter la réponse
 })
 .catch((error) => {
@@ -106,13 +110,11 @@ monShow= {
 });
 }
 
+markShowAsRemovedViewed(showId: number) {
+  this.shows = this.shows.filter((show: any) => show.id !== showId);
+}
 
-
-  //   .then(() => {
-  //     // Enlever le show de la liste des shows
-  //     this.shows = this.shows.filter((show: any) => {
-  //       return show.id !== showId;
-  //     });
-  //   });
-  // }
+  scrollToTop() {
+  window.scrollTo(0, 0);
+}
 }
