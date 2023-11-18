@@ -46,7 +46,11 @@
       class="slide"
       [ngClass]="{ active: i === currentSlideIndex }"
     >
-      <img [src]="slide" alt="Show image" />
+      <img
+        [src]="getPoster(slide.poster_path)"
+        alt="Show image"
+        (click)="goToDetails(slide)"
+      />
     </div>
   </div>
   <button class="carousel-control prev" (click)="previousSlide()">

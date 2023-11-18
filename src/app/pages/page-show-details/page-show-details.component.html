@@ -30,6 +30,23 @@
         showDetails.status === "Ended" ? "Terminée" : "En cours"
       }}</strong>
     </div>
+    <div
+      class="coeur"
+      *ngIf="!showDetails.is_wished && !showDetails.is_viewed"
+      (click)="addShowWishedList(showDetails.id)"
+      title="Ajouter à la liste des séries à voir"
+    >
+      <p>bouton ajouter série à voir</p>
+      <img
+        class="pointer default"
+        src="/assets/img/bouton_card_coeur_blanc.png"
+      />
+      <img
+        class="pointer hover"
+        src="/assets/img/bouton_card_coeur_jaune.png"
+        alt="Ajouter à la liste des séries à voir"
+      />
+    </div>
   </div>
 </div>
 

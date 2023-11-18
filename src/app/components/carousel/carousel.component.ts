@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carousel',
@@ -7,12 +8,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent implements OnInit, OnDestroy {
-  popularShows: string[] = [];
-  slides: string[] = [];
+  popularShows: any = [];
+  slides: any = [];
   currentSlideIndex: number = 0;
   private autoSlideInterval: any;
+  show: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
     this.getPopularShows();
@@ -45,14 +47,26 @@ export class CarouselComponent implements OnInit, OnDestroy {
   //     active: index === this.currentSlideIndex
   //   }));
   // }
+  getPoster(path: string) {
+      console.log('image', path);
+    if (!path ) {
+return 'https://via.placeholder.com/300x450?text=No+image+available';
+    }
+  
+    
+    return 'https://image.tmdb.org/t/p/w500/' + path;
+  }
 
   getPopularShows() {
-    this.http.get<{ posterPaths: string[] }>('http://localhost:3000/api/show/popular/tvshows?page=1').subscribe(
-      (response) => {
+    this.http.get('http://localhost:3000/api/show/popular/tvshows?page=1').subscribe(
+      (response: any) => {
+        console.log(response);
+        this.popularShows = response.splice(1, 7);
+        
         const excludedPath = '/7dFZJ2ZJJdcmkp05B9NWlqTJ5tq.jpg';
-        this.popularShows = response.posterPaths.filter(posterPath => posterPath !== excludedPath);
-        console.table('popular => '+ this.popularShows[2])
-        console.log('popular => ', this.popularShows)
+        // this.popularShows = response.posterPaths.filter(posterPath => posterPath !== excludedPath);
+        // console.table('popular => '+ this.popularShows[2])
+        // console.log('popular => ', this.popularShows)
         this.setSlides();
         // this.getRandomSlides();
       },
@@ -65,8 +79,14 @@ export class CarouselComponent implements OnInit, OnDestroy {
     setSlides() {
       const baseUrl = 'https://image.tmdb.org/t/p/w500/';
     // this.slides = [...this.popularShows];
-    this.slides = this.popularShows.map(posterPath => baseUrl + posterPath);
+    this.slides = this.popularShows;
 
+  }
+
+    goToDetails(slide: any) {
+      console.log(slide);
+      
+    this.router.navigate(['/show-details', slide.id]);
   }
   // getRandomSlides() {
   //   for (let i = 0; i < 3; i++) {

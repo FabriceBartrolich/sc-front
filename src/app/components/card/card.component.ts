@@ -246,6 +246,6 @@ export class CardComponent implements OnInit {
   // }
 
   goToDetails() {
-    this.router.navigate(['/show-details', this.show.id]);
+    this.router.navigate(['/show-details', this.show.api_id]);
   }
 }
