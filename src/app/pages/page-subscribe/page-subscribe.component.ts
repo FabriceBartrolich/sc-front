@@ -10,11 +10,16 @@ export class PageSubscribeComponent {
   username: string = '';
   email: string = '';
   password: string = '';
+  confirmPassword: string = '';
 
   constructor(private router: Router) { }
   signUp() {
 
-
+    if (this.password !== this.confirmPassword) {
+      console.error("Les mots de passe ne correspondent pas.");
+      return; 
+    }
+    
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -35,7 +40,7 @@ export class PageSubscribeComponent {
       .then(response => response.json())
       .then(result => {
         console.log(result);
-          // Redirigez l'utilisateur vers la page d'accueil ici
+
         this.router.navigate(['/connect']);
       })
       .catch(error => console.log('error', error));

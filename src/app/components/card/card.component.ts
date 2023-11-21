@@ -16,6 +16,7 @@ export class CardComponent implements OnInit {
   };
   @Input() mode = '';
   @Input() titleId: any = 'name';
+  @Input() idKey: any = 'id';
 
   @Input() isUserLoggedIn: boolean = false;
   shows: Show[] = [];
@@ -239,6 +240,8 @@ export class CardComponent implements OnInit {
   // }
 
   goToDetails() {
-    this.router.navigate(['/show-details', this.show.api_id]);
+    console.log(this.show);
+    
+    this.router.navigate(['/show-details', this.show[this.idKey]]);
   }
 }
