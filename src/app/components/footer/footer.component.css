@@ -1,0 +1,54 @@
+.my-footer {
+  background-color: #090a0b;
+  display: flex;
+  justify-content: space-between; /* Répartit le logo, les liens et la mention sur la largeur du footer */
+  align-items: center;
+  padding: 20px;
+  font-family: "Playfair Display", serif;
+  color: #f7f7ff;
+  margin-top: 20px;
+}
+
+.logo_footer {
+  margin-left: 20px;
+}
+
+.logo_footer img {
+  width: 250px;
+  transition: transform 0.3s ease;
+}
+
+.logo_footer img:hover {
+  transform: scale(1.05);
+}
+
+.logo_footer:hover {
+  cursor: pointer;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Alignement vertical des liens avec le logo */
+  flex-grow: 1; /* Permet aux liens de prendre l'espace disponible au centre */
+}
+
+.footer-nav a {
+  color: #f7f7ff;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0 30px; /* Augmente la marge entre les liens */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a:hover {
+  color: #fbc500;
+  transform: scale(1.1);
+}
+
+.tmdb-mention {
+  font-size: 0.8rem;
+  text-align: right;
+  margin-bottom: 30px;
+}

@@ -6,6 +6,26 @@
   margin: 0 1rem;
 }
 
+.back-to-top {
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #090a0b;
+  border: none;
+  color: #f7f7ff;
+  cursor: pointer;
+  border-radius: 4px;
+  font-family: "Lato", sans-serif;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.back-to-top:hover,
+.back-to-top:active:hover {
+  color: #fbc500;
+  transform: scale(1.1);
+}
 /* Médias queries pour adapter l'affichage des cartes en fonction de la taille de l'écran */
 
 @media screen and (max-width: 1290px) {

@@ -39,7 +39,7 @@ export class PageShowDetailsComponent implements OnInit {
     })
     .then((response) => response.json())
     .then((result) => {
-      console.log('Détails de la série', result);
+
       
       this.showDetails = result;
       // Maintenant, les détails de la série sont stockés dans showDetails
@@ -50,7 +50,7 @@ export class PageShowDetailsComponent implements OnInit {
   }
 
   getPoster(path: string) {
-      console.log('image', path);
+
     if (!path ) {
 return 'https://via.placeholder.com/300x450?text=No+image+available';
     }
@@ -60,9 +60,9 @@ return 'https://via.placeholder.com/300x450?text=No+image+available';
   }
 
     addShowWishedList(showId: number | undefined) {
-      console.log("AddShowWishedList test");
+
       
-     console.log("AddShowWishedList 1");
+
     let me: any = localStorage.getItem('me');
     me = JSON.parse(me);
     const userId = me.id;
@@ -85,7 +85,7 @@ return 'https://via.placeholder.com/300x450?text=No+image+available';
     .then((response) => {
     if (!response.ok) {
       if (response.status === 401) {
-        console.log("Tu n'es pas connecté");
+
         this.router.navigate(['/connect']);
         localStorage.removeItem('me');
         return; // Ajoute un return ici pour gérer le cas 401

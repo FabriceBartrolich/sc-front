@@ -36,10 +36,9 @@
       (click)="addShowWishedList(showDetails.id)"
       title="Ajouter à la liste des séries à voir"
     >
-      <p>bouton ajouter série à voir</p>
       <img
         class="pointer default"
-        src="/assets/img/bouton_card_coeur_blanc.png"
+        src="/assets/img/bouton_card_coeur_gris.png"
       />
       <img
         class="pointer hover"
@@ -51,5 +50,5 @@
 </div>
 
 <ng-template #loading>
-  <p>Chargement des détails de la série...</p>
+  <span class="loader"></span>
 </ng-template>

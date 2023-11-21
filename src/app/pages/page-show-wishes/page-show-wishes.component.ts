@@ -14,10 +14,10 @@ export class PageShowWishesComponent {
     this.loadShows();
   }
   loadShows() {
-    console.log('je suis dans loadShows');
+
     let me: any = localStorage.getItem('me');
     me = JSON.parse(me);
-    console.log('me', me);
+
     
     fetch(`http://localhost:3000/api/show/wished/${me.user.id}`, {
       method: 'GET',
@@ -28,15 +28,14 @@ export class PageShowWishesComponent {
     })
      .then((response) => response.json())
       .then((result) => {
-        console.log('result', result);
+
         
         if (result.statusCode == 401) {
-          console.log("Tu n'est pas connecté");
           this.router.navigate(['/connect']); 
           localStorage.removeItem('me');
         } else {
           this.shows = result;
-          console.log('Bonjour', result);
+
         }
       })
       .catch((error) => {
@@ -45,12 +44,12 @@ export class PageShowWishesComponent {
   }
 
   getPoster(path: string) {
-    console.log(path);
+
     return 'https://image.tmdb.org/t/p/w300/' + path;
   }
 
 //   removeShowWishedList(showId: number) {
-//          console.log("removeShowWishedList 2");
+
 //     // L'utilisateur est connecté
 //     let me: any = localStorage.getItem('me');
 
@@ -73,7 +72,7 @@ export class PageShowWishesComponent {
 //       }),
 //     }).then((response) => {
 //   if (!response.ok && response.status == 401) {
-//     console.log("Tu n'es pas connecté");
+
 //     this.router.navigate(['/connect']);
 //     localStorage.removeItem('me');
 //   } else if (response.ok) {
@@ -82,7 +81,7 @@ export class PageShowWishesComponent {
 //   // return response.json(); // facultatif, selon le besoin de traiter la réponse
 // })
 // .catch((error) => {
-//   console.log('Une erreur est survenue lors de la suppression de la série', error);
+
 // });
 // }
   //   .then(() => {

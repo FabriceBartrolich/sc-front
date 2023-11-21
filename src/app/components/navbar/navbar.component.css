@@ -45,3 +45,7 @@ a:hover {
 .nav-link:hover {
   transform: scale(1.1); /* Agrandit le lien de 10% au survol */
 }
+
+.logo_navbar:hover {
+  cursor: pointer;
+}

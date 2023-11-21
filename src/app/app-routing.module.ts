@@ -9,6 +9,7 @@ import { PageShowViewsComponent } from './pages/page-show-views/page-show-views.
 import { PageShowWishesComponent } from './pages/page-show-wishes/page-show-wishes.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PageShowDetailsComponent } from './pages/page-show-details/page-show-details.component';
+import { PageLegalComponent } from './pages/page-legal/page-legal.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'add-show', component: PageAddShowComponent },
   { path: 'connect', component: PageConnectComponent },
   { path: 'subscribe', component: PageSubscribeComponent },
+    { path: 'legal', component: PageLegalComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 

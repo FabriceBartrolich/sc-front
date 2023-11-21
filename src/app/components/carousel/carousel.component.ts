@@ -48,7 +48,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
   //   }));
   // }
   getPoster(path: string) {
-      console.log('image', path);
+
     if (!path ) {
 return 'https://via.placeholder.com/300x450?text=No+image+available';
     }
@@ -60,13 +60,13 @@ return 'https://via.placeholder.com/300x450?text=No+image+available';
   getPopularShows() {
     this.http.get('http://localhost:3000/api/show/popular/tvshows?page=1').subscribe(
       (response: any) => {
-        console.log(response);
+
         this.popularShows = response.splice(1, 7);
         
         const excludedPath = '/7dFZJ2ZJJdcmkp05B9NWlqTJ5tq.jpg';
         // this.popularShows = response.posterPaths.filter(posterPath => posterPath !== excludedPath);
         // console.table('popular => '+ this.popularShows[2])
-        // console.log('popular => ', this.popularShows)
+
         this.setSlides();
         // this.getRandomSlides();
       },
@@ -84,31 +84,10 @@ return 'https://via.placeholder.com/300x450?text=No+image+available';
   }
 
     goToDetails(slide: any) {
-      console.log(slide);
+
       
     this.router.navigate(['/show-details', slide.id]);
   }
-  // getRandomSlides() {
-  //   for (let i = 0; i < 3; i++) {
-  //     const randomIndex = Math.floor(Math.random() * this.popularShows.length);
-  //     this.slides.push(this.popularShows[randomIndex]);
-  //   }
-  // }
-
-  // getRandomSlides() {
-  // this.slides = []; // Réinitialiser les slides si nécessaire
-
-  // for (let i = 0; i < 3; i++) {
-  //   let randomIndex;
-  //   let selectedItem;
-
-  //   do {
-  //     randomIndex = Math.floor(Math.random() * this.popularShows.length);
-  //     selectedItem = this.popularShows[randomIndex];
-  //   } while (this.slides.includes(selectedItem));
-
-  //   this.slides.push(selectedItem);
-  // }
 }
 
 

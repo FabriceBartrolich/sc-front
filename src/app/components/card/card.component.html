@@ -5,6 +5,7 @@
     [src]="getPoster(show.poster_path)"
     alt="Image de {{ show.name }}"
     (click)="goToDetails()"
+    title="{{ show[titleId] }}"
   />
   <div class="card-button" *ngIf="isLoggedIn()">
     <div

@@ -33,9 +33,9 @@ export class SearchBarComponent implements OnInit {
   }
 
   markShowAsViewed(id: any) {
-    // console.log('bonjour', id);
+
  this.shows = this.shows.map((show: any) => {
-          console.log(show.id, id);
+
           
           if (show.id === id) {
             show.is_viewed = true;
@@ -45,9 +45,9 @@ export class SearchBarComponent implements OnInit {
   }
 
     markShowAsWished(id: any) {
-    // console.log('bonjour', id);
+  
  this.shows = this.shows.map((show: any) => {
-          console.log(show.id, id);
+
           
           if (show.id === id) {
             show.is_wished = true;
@@ -80,109 +80,9 @@ export class SearchBarComponent implements OnInit {
          });
   }
 
-  // addShowViewedList(showId: number) {
-  //   // L'utilisateur est connecté
-  //       console.log("AddShowViewedList 2");
-  //   let me: any = localStorage.getItem('me');
-  //   me = JSON.parse(me);
-
-  //   // On récupère l'id de l'utilisateur
-  //   const userId = me.id;
-  //   // On récupère l'id du show
-
-  //   fetch(`http://localhost:3000/api/show/viewedShows`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${me.token}`,
-  //     },
-  //     body: JSON.stringify({
-  //       userId,
-  //       showId,
-  //     }),
-  //   })
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error(
-  //           `Échec de l'ajout de la série à la liste des séries vues !`
-  //         );
-  //       }
-  //       return response.json();
-  //     })
-  //     .then(() => {
-  //       // Traiter la réponse - par exemple, notifier l'utilisateur du succès
-  //       alert(`Série ajoutée avec succès à la liste des séries vues !`);
-  //       // this.search();
-  //       this.shows = this.shows.map((show: any) => {
-  //         if (show.id === showId) {
-  //           show.is_viewed = true;
-  //         }
-  //         return show;
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       // Gérer les erreurs
-  //       console.error(
-  //         `Erreur lors de l'ajout de la série à la liste des séries vues:`,
-  //         error
-  //       );
-  //       alert(
-  //         `Une erreur est survenue lors de l'ajout de la série à la liste des séries vues.`
-  //       );
-  //     });
-  // }
-
-  // addShowWishedList(showId: number) {
-  //           console.log("addShowWishedList 2");
-  //   let me: any = localStorage.getItem('me');
-  //   me = JSON.parse(me);
-
-  //   const userId = me.id;
-
-  //   fetch(`http://localhost:3000/api/show/wishedShows`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${me.token}`,
-  //     },
-  //     body: JSON.stringify({
-  //       userId,
-  //       showId,
-  //     }),
-  //   })
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error(
-  //           `Échec de l'ajout de la série à la liste des séries à voir !`
-  //         );
-  //       }
-  //       return response.json();
-  //     })
-  //     .then(() => {
-  //       // Traiter la réponse - par exemple, notifier l'utilisateur du succès
-  //       alert(`Série ajoutée avec succès à la liste des séries à voir !`);
-  //       // this.search();
-  //       this.shows = this.shows.map((show: any) => {
-  //         if (show.id === showId) {
-  //           show.is_wished = true;
-  //         }
-  //         return show;
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       // Gérer les erreurs
-  //       console.error(
-  //         `Erreur lors de l'ajout de la série à la liste des séries à voir :`,
-  //         error
-  //       );
-  //       alert(
-  //         `Une erreur est survenue lors de l'ajout de la série à la liste des séries à voir.`
-  //       );
-  //     });
-  // }
 
   getPoster(path: string) {
-      console.log('image', path);
+
     if (!path ) {
 return 'https://via.placeholder.com/300x450?text=No+image+available';
     }

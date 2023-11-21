@@ -27,7 +27,7 @@ export class NavbarComponent  {
 
   logout() {
     localStorage.clear();
-    console.log('Déconnexion');
+
     
       this.isConnected = false;
     this.router.navigate(['/home']);

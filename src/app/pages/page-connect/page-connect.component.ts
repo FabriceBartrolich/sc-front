@@ -12,7 +12,7 @@ export class PageConnectComponent {
 
   constructor(private router: Router) { }
   login() {
-    console.log('je suis dans login', this.username, this.password);
+
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -32,7 +32,7 @@ export class PageConnectComponent {
     fetch("http://localhost:3000/api/auth/login", requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
+
         localStorage.setItem('me', JSON.stringify(result));
         // Redirigez l'utilisateur vers la page d'accueil ici
         this.router.navigate(['/home']);
@@ -51,7 +51,7 @@ export class PageConnectComponent {
 getCurrentUser() : any {
 const me : any = localStorage.getItem('me');
 const parsedMe = JSON.parse(me);
-console.log(parsedMe);
+
 return parsedMe;
 }
 

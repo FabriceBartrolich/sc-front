@@ -13,7 +13,7 @@ export class PageSubscribeComponent {
 
   constructor(private router: Router) { }
   signUp() {
-    console.log('je suis dans subscribe', this.username, this.email, this.password);
+
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");

@@ -17,6 +17,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { ShowListComponent } from './components/show-list/show-list.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { PageShowDetailsComponent } from './pages/page-show-details/page-show-details.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PageLegalComponent } from './pages/page-legal/page-legal.component';
 
 
 
@@ -36,6 +38,8 @@ import { PageShowDetailsComponent } from './pages/page-show-details/page-show-de
     ShowListComponent,
     CarouselComponent,
     PageShowDetailsComponent,
+    FooterComponent,
+    PageLegalComponent,
 
 
   ],

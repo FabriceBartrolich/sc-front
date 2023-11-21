@@ -26,13 +26,9 @@ export class CardComponent implements OnInit {
   @Output() removeWishedShow = new EventEmitter<number>();
 
   constructor(private userService: UserService, private router: Router) {}
-  ngOnInit(): void {
-    console.log('dans la carte ', this.show);
-  }
+  ngOnInit(): void {}
 
   addShowViewedList(showId: number | undefined) {
-    console.log("AddShowViewedList 1");
-    
     let me: any = localStorage.getItem('me');
     me = JSON.parse(me);
     const userId = me.id;
@@ -52,20 +48,21 @@ export class CardComponent implements OnInit {
         showId,
       }),
     })
-  .then((response) => {
-    if (!response.ok) {
-      if (response.status === 401) {
-        console.log("Tu n'es pas connecté");
-        this.router.navigate(['/connect']);
-        localStorage.removeItem('me');
-        return; // Ajouter un return ici pour gérer le cas 401
-      } else {
-        throw new Error(`Échec de l'ajout de la série à la liste des séries vues !`);
-      }
-    } else {
-      return response.json(); // Continue avec le traitement de la réponse
-    }
-  })
+      .then((response) => {
+        if (!response.ok) {
+          if (response.status === 401) {
+            this.router.navigate(['/connect']);
+            localStorage.removeItem('me');
+            return; // Ajouter un return ici pour gérer le cas 401
+          } else {
+            throw new Error(
+              `Échec de l'ajout de la série à la liste des séries vues !`
+            );
+          }
+        } else {
+          return response.json(); // Continue avec le traitement de la réponse
+        }
+      })
       .then(() => {
         this.addViewedShow.emit(showId);
         this.shows = this.shows.map((show: any) => {
@@ -88,7 +85,7 @@ export class CardComponent implements OnInit {
   }
 
   addShowWishedList(showId: number | undefined) {
-     console.log("AddShowWishedList 1");
+
     let me: any = localStorage.getItem('me');
     me = JSON.parse(me);
     const userId = me.id;
@@ -108,20 +105,22 @@ export class CardComponent implements OnInit {
         showId,
       }),
     })
-    .then((response) => {
-    if (!response.ok) {
-      if (response.status === 401) {
-        console.log("Tu n'es pas connecté");
-        this.router.navigate(['/connect']);
-        localStorage.removeItem('me');
-        return; // Ajoute un return ici pour gérer le cas 401
-      } else {
-        throw new Error(`Échec de l'ajout de la série à la liste des séries à voir !`);
-      }
-    } else {
-      return response.json();
-    }
-  })
+      .then((response) => {
+        if (!response.ok) {
+          if (response.status === 401) {
+
+            this.router.navigate(['/connect']);
+            localStorage.removeItem('me');
+            return; // Ajoute un return ici pour gérer le cas 401
+          } else {
+            throw new Error(
+              `Échec de l'ajout de la série à la liste des séries à voir !`
+            );
+          }
+        } else {
+          return response.json();
+        }
+      })
       .then(() => {
         this.addWishedShow.emit(showId);
         this.shows = this.shows.map((show: any) => {
@@ -145,7 +144,7 @@ export class CardComponent implements OnInit {
   }
 
   removeShowViewedList(showId: number | undefined) {
-    console.log("removeShowViewedList 1");
+
     // L'utilisateur est connecté
     let me: any = localStorage.getItem('me');
     me = JSON.parse(me);
@@ -168,26 +167,23 @@ export class CardComponent implements OnInit {
     })
       .then((response) => {
         if (!response.ok && response.status == 401) {
-          console.log("Tu n'es pas connecté");
+
           this.router.navigate(['/connect']);
           localStorage.removeItem('me');
         } else if (response.ok) {
-             this.removeViewedShow.emit(showId); 
-        this.shows = this.shows.filter((show: any) => show.id !== showId); 
-        console.log('La série a bien été supprimée');
+          this.removeViewedShow.emit(showId);
+          this.shows = this.shows.filter((show: any) => show.id !== showId);
+
         }
         // return response.json(); // facultatif, selon le besoin de traiter la réponse
       })
       .catch((error) => {
-        console.log(
-          'Une erreur est survenue lors de la suppression de la série',
-          error
-        );
+
       });
   }
 
   removeShowWishedList(showId: number | undefined) {
-     console.log("removeShowWishedList 1");
+
     // L'utilisateur est connecté
     let me: any = localStorage.getItem('me');
 
@@ -211,21 +207,18 @@ export class CardComponent implements OnInit {
     })
       .then((response) => {
         if (!response.ok && response.status == 401) {
-          console.log("Tu n'es pas connecté");
+
           this.router.navigate(['/connect']);
           localStorage.removeItem('me');
         } else if (response.ok) {
-             this.removeWishedShow.emit(showId); 
-        this.shows = this.shows.filter((show: any) => show.id !== showId); 
-        console.log('La série a bien été supprimée');
+          this.removeWishedShow.emit(showId);
+          this.shows = this.shows.filter((show: any) => show.id !== showId);
+  
         }
         // return response.json(); // facultatif, selon le besoin de traiter la réponse
       })
       .catch((error) => {
-        console.log(
-          'Une erreur est survenue lors de la suppression de la série',
-          error
-        );
+
       });
   }
 
@@ -234,7 +227,7 @@ export class CardComponent implements OnInit {
   }
 
   getPoster(path: string) {
-    console.log('image', path);
+
     if (!path) {
       return 'https://via.placeholder.com/300x450?text=No+image+available';
     }
