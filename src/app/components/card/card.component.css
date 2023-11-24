@@ -64,3 +64,12 @@
 .pointer {
   cursor: pointer;
 }
+
+@media screen and (max-width: 360px) {
+  .card-container {
+    width: 17rem;
+  }
+  .card-container img {
+    width: 16.8rem;
+  }
+}

@@ -1,36 +1,10 @@
-.my-navbar .logo_navbar {
-  width: 300px;
-  margin-left: 20px;
-  margin-right: 50px;
-}
-
-.logo_navbar:hover {
-  transform: scale(1.05); /* Agrandit le lien de 10% au survol */
-}
-
-.bg {
-  background-color: #090a0b;
-  display: flex;
-  justify-content: center;
-  font-family: "Playfair Display", serif; /* Ajoutez cette ligne pour spécifier la police */
-}
-
-/* Conteneur pour les liens */
-.collapse {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 /* Style pour les liens */
 a {
   color: #f7f7ff;
 
   font-weight: bold;
   font-size: 1.4rem;
-  margin-right: 50px;
+  text-decoration: none;
   font-family: "Playfair Display", serif; /* Ajoutez cette ligne pour spécifier la police */
 }
 
@@ -38,14 +12,111 @@ a:visited {
   color: #f7f7ff;
 }
 /* Style de survol pour les liens */
-a:hover {
-  color: #fbc500;
-}
-
-.nav-link:hover {
-  transform: scale(1.1); /* Agrandit le lien de 10% au survol */
-}
 
 .logo_navbar:hover {
   cursor: pointer;
+}
+
+.mynavbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* margin-bottom: 100px; */
+  height: 7rem;
+  background-color: black;
+}
+.mylogo {
+  width: 300px;
+  margin-left: 0.2rem;
+}
+
+.mylogo:hover {
+  transform: scale(1.05); /* Agrandit le lien de 10% au survol */
+}
+
+.mylogo:hover {
+  cursor: pointer;
+}
+.myul {
+  display: flex;
+  width: 100%;
+  /* border: 1px solid red; */
+  list-style: none;
+  margin-top: 1rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.myul a {
+  font-size: 1.3rem;
+  /* width: 2rem; */
+  /* border: 1px solid green; */
+  margin: 0 0.6rem;
+}
+
+.myul a:hover {
+  color: #fbc500;
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 977px) {
+  .myul a {
+    font-size: 1.1rem;
+    /* width: 2rem; */
+    /* border: 1px solid green; */
+    margin: 0 0.6rem;
+  }
+}
+@media screen and (max-width: 897px) {
+  .mylogo {
+    width: 250px;
+    margin-left: 1rem;
+  }
+  .myul {
+    margin-right: 5rem;
+  }
+  .myul a {
+    font-size: 0.9rem;
+    /* width: 2rem; */
+    /* border: 1px solid green; */
+    margin: 0 0.5rem;
+  }
+}
+@media screen and (max-width: 762px) {
+  .mylogo {
+    width: 210px;
+    margin-left: 1rem;
+  }
+  .myul {
+    margin-right: 5rem;
+  }
+  .myul a {
+    font-size: 0.8rem;
+    /* width: 2rem; */
+    /* border: 1px solid green; */
+    margin: 0 0.35rem;
+  }
+}
+@media screen and (max-width: 662px) {
+  .mynavbar {
+    /* background-color: red; */
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 600px) {
+  .myul {
+    margin: 0 0 1rem 0;
+    padding: 0;
+  }
+}
+@media screen and (max-width: 420px) {
+  .myul {
+    /* background-color: red; */
+    flex-direction: column;
+  }
+
+  .mynavbar {
+    /* background-color: red; */
+    height: 13rem;
+  }
 }

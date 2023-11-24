@@ -15,6 +15,7 @@
 .search-input {
   padding: 10px;
   font-size: 16px;
+
   border: none;
   flex-grow: 1;
   border-radius: 4px 0 0 4px;
@@ -66,8 +67,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Crée 4 colonnes de taille égale */
   grid-gap: 10px; /* Espace entre les cartes */
-  /* Ajoutez d'autres styles si nécessaire */
   margin: 0 1rem;
+  justify-items: center;
 }
 
 .back-to-top {
@@ -108,8 +109,69 @@
     grid-template-columns: repeat(2, 1fr); /* Crée 2 colonnes de taille égale */
   }
 }
+
+@media screen and (max-width: 1048px) {
+  .search-bar {
+    width: 50%;
+  }
+  .search-input {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .search-bar {
+    width: 70%;
+  }
+  .search-input {
+    text-align: center;
+  }
+}
+
 @media screen and (max-width: 700px) {
   .card-container {
     grid-template-columns: repeat(1, 1fr); /* Crée 2 colonnes de taille égale */
+  }
+}
+
+@media screen and (max-width: 615px) {
+  .search-bar {
+    width: 90%;
+  }
+  .search-input {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 482px) {
+  .search-bar {
+    flex-direction: column;
+    border: none;
+  }
+  .search-bar button {
+    width: 50%;
+  }
+  .search-bar button:hover {
+    color: #fbc500;
+    transform: none;
+  }
+  .search-button:active:hover {
+    color: #fbc500;
+    transform: none;
+  }
+  .search-bar input {
+    border: 3px solid #646464;
+    width: 100%;
+  }
+  .search-bar:hover {
+    box-shadow: none;
+  }
+}
+@media screen and (max-width: 328px) {
+  .search-bar input {
+    font-size: 0.75rem;
+  }
+  .search-bar button {
+    font-size: 0.75rem;
   }
 }

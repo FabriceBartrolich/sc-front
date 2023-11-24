@@ -1,7 +1,7 @@
 .custom-carousel {
   background-color: #fbc500;
   position: relative;
-  /* max-width: 600px;  */
+  max-width: 600px;
   margin: auto;
   overflow: hidden;
   display: flex;

@@ -1,47 +1,31 @@
-<nav class="navbar navbar-expand-lg shadow p-3 mb-5 bg my-navbar">
+<nav class="mynavbar">
   <img
-    class="logo_navbar"
+    class="mylogo"
     src="assets/img/logo-sc-transparent.png"
     alt="logo Séries Connect"
     title="Séries Connect"
     [routerLink]="['/home']"
   />
-  <div class="container">
-    <div class="collapse navbar-collapse" id="mobileNav">
-      <ul class="navbar-nav ml-auto custom-navbar">
-        <li class="nav-item active custom-nav-item">
-          <a
-            class="nav-link custom-nav-link navbar-title"
-            [routerLink]="['/home']"
-            >Accueil</a
-          >
-        </li>
-        <li class="nav-item custom-nav-item" *ngIf="isLoggedIn()">
-          <a class="nav-link custom-nav-link" [routerLink]="['/show-views']"
-            >Séries vues</a
-          >
-        </li>
-        <li class="nav-item custom-nav-item" *ngIf="isLoggedIn()">
-          <a class="nav-link custom-nav-link" [routerLink]="['/show-wishes']"
-            >Séries à voir</a
-          >
-        </li>
-        <li class="nav-item custom-nav-item">
-          <a class="nav-link custom-nav-link" [routerLink]="['/subscribe']"
-            >Inscription</a
-          >
-        </li>
-        <li class="nav-item custom-nav-item" *ngIf="!isLoggedIn()">
-          <a class="nav-link custom-nav-link" [routerLink]="['/connect']"
-            >Connexion</a
-          >
-        </li>
-        <li class="nav-item custom-nav-item" *ngIf="isLoggedIn()">
-          <a class="nav-link custom-nav-link" href="#" (click)="logout()"
-            >Déconnexion</a
-          >
-        </li>
-      </ul>
-    </div>
+  <div class="mycontainer">
+    <ul class="myul">
+      <li>
+        <a [routerLink]="['/home']">Accueil</a>
+      </li>
+      <li *ngIf="isLoggedIn()">
+        <a [routerLink]="['/show-views']">Séries vues</a>
+      </li>
+      <li *ngIf="isLoggedIn()">
+        <a [routerLink]="['/show-wishes']">Séries à voir</a>
+      </li>
+      <li>
+        <a [routerLink]="['/subscribe']">Inscription</a>
+      </li>
+      <li *ngIf="!isLoggedIn()">
+        <a [routerLink]="['/connect']">Connexion</a>
+      </li>
+      <li *ngIf="isLoggedIn()">
+        <a href="#" (click)="logout()">Déconnexion</a>
+      </li>
+    </ul>
   </div>
 </nav>

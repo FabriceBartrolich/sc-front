@@ -4,6 +4,7 @@ form {
   max-width: 400px;
   background: #f7f7f7;
   padding: 20px;
+  margin-top: 40px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid #646464;
 }
