@@ -26,24 +26,47 @@
   <button type="submit">Se connecter</button>
 </form>
 <div *ngIf="isConnected()"></div> -->
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <label for="username">Nom d'utilisateur</label>
   <input
     type="text"
     id="name"
     class="form-control"
     formControlName="username"
     required
+    placeholder="Entrez votre nom d'utilisateur"
   />
 
   <div
     *ngIf="username.invalid && (username.dirty || username.touched)"
     class="alert alert-danger"
   >
-    <div *ngIf="username.errors?.['required']">Name is required.</div>
-    <div *ngIf="username.errors?.['minlength']">
-      Name must be at least 4 characters long.
+    <div *ngIf="username.errors?.['required']">
+      Un nom d'utilisateur est demandé
     </div>
-    <div *ngIf="username.errors?.['forbiddenName']">Name cannot be Bob.</div>
+    <div *ngIf="username.errors?.['minlength']">
+      Le nom d'utilisateur doit faire au moins 3 caractères.
+    </div>
   </div>
-  <button type="submit">Ajouter</button>
+
+  <label for="password">Mot de passe</label>
+  <input
+    type="text"
+    id="password"
+    class="form-control"
+    formControlName="password"
+    required
+    placeholder="Entrez votre mot de passe"
+  />
+
+  <div
+    *ngIf="password.invalid && (password.dirty || password.touched)"
+    class="alert alert-danger"
+  >
+    <div *ngIf="password.errors?.['required']">Un mot de passe est demandé</div>
+    <div *ngIf="password.errors?.['minlength']">
+      Le mot de passe doit faire au moins 6 caractères.
+    </div>
+  </div>
+  <button type="submit">Connexion</button>
 </form>

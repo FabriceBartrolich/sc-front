@@ -42,18 +42,21 @@ loginForm = new FormGroup({
   }
 
 
-  onSubmit() {
-    console.log(this.loginForm.get('username'));
+  // onSubmit() {
+  //   console.log(this.loginForm.get('username'));
     
-  }
+  // }
 
   login() {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
+console.log(this.username.value);
+console.log(this.password.value);
+
 
     const raw = JSON.stringify({
-      username: this.username,
-      password: this.password,
+      username: this.username.value,
+      password: this.password.value,
     });
 
     const requestOptions: RequestInit = {
