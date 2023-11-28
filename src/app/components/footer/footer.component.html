@@ -10,9 +10,9 @@
   </div>
   <div class="text-footer">
     <nav class="footer-nav">
-      <a [routerLink]="['/legal']">Mentions Légales</a>
-      <a [routerLink]="['/show-views']">Séries Vues</a>
-      <a [routerLink]="['/show-wishes']">Séries à Voir</a>
+      <a [routerLink]="['/legal']">Mentions légales</a>
+      <a *ngIf="isLoggedIn()" [routerLink]="['/show-views']">Séries vues</a>
+      <a *ngIf="isLoggedIn()" [routerLink]="['/show-wishes']">Séries à voir</a>
     </nav>
 
     <p>Cette application utilise l'API TMDB</p>

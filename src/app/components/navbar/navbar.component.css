@@ -1,11 +1,12 @@
 /* Style pour les liens */
+
 a {
   color: #f7f7ff;
 
   font-weight: bold;
   font-size: 1.4rem;
   text-decoration: none;
-  font-family: "Playfair Display", serif; /* Ajoutez cette ligne pour spécifier la police */
+  font-family: "Playfair Display", serif;
 }
 
 a:visited {
@@ -32,11 +33,9 @@ a:visited {
 
 .mylogo:hover {
   transform: scale(1.05); /* Agrandit le lien de 10% au survol */
-}
-
-.mylogo:hover {
   cursor: pointer;
 }
+
 .myul {
   display: flex;
   width: 100%;
@@ -56,7 +55,6 @@ a:visited {
 
 .myul a:hover {
   color: #fbc500;
-  transform: scale(1.1);
 }
 
 @media screen and (max-width: 977px) {

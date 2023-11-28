@@ -2,18 +2,18 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { User} from '../models/user';
+import { User } from '../models/user';
 import { Token } from '../models/token.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-    private userLoggedIn = new BehaviorSubject<boolean>(false);
+  private userLoggedIn = new BehaviorSubject<boolean>(false);
   userLoggedIn$ = this.userLoggedIn.asObservable(); //  Observable abonnements
 
   constructor(private readonly http: HttpClient, private router: Router) {}
-   url: string = `http://localhost:3000/api/`;
+  url: string = `http://localhost:3000/api/`;
   // 1 - déclaration d'un behaviour subject (init à false) pour transmettre un booléen (true si connecté)
 
   loginUser(user: User): Observable<Token> {
@@ -34,19 +34,40 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
+  getMe() {
+        interface Me {
+      token: string;
+      user: User;
+    }
+
+    interface User {
+      username: string;
+      id: number;
+    }
+    const meUnparsed: string | null = localStorage.getItem('me');
+
+    if (!meUnparsed) {
+      return;
+    }
+
+    const me: Me = JSON.parse(meUnparsed);
+    console.log(me);
+
+    return me;
+  }
+
   isLoggedIn(): boolean {
-// Récupérer ma session dans localStorage
-const me = localStorage.getItem('me');
-//Parser ce que je viens de récupérer si c'est défini
-if (me) {
-  const meParsed = JSON.parse(me);
-  // Si je suis connecté, je retourne true
-  return true;
-} else {
-  return false;
-}
-// Si quelque chose est défini, je retourne true
- 
+    // Récupérer ma session dans localStorage
+    const me = localStorage.getItem('me');
+    //Parser ce que je viens de récupérer si c'est défini
+    if (me) {
+      const meParsed = JSON.parse(me);
+      // Si je suis connecté, je retourne true
+      return true;
+    } else {
+      return false;
+    }
+    // Si quelque chose est défini, je retourne true
   }
   // getAllUsers(): Observable<User[]> {
   //   return this.http.get<User[]>(`${this.url}user`);

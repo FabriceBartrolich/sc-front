@@ -33,35 +33,28 @@ export class SearchBarComponent implements OnInit {
   }
 
   markShowAsViewed(id: any) {
-
- this.shows = this.shows.map((show: any) => {
-
-          
-          if (show.id === id) {
-            show.is_viewed = true;
-          }
-          return show;
-        });
+    this.shows = this.shows.map((show: any) => {
+      if (show.id === id) {
+        show.is_viewed = true;
+      }
+      return show;
+    });
   }
 
-    markShowAsWished(id: any) {
-  
- this.shows = this.shows.map((show: any) => {
-
-          
-          if (show.id === id) {
-            show.is_wished = true;
-          }
-          return show;
-        });
+  markShowAsWished(id: any) {
+    this.shows = this.shows.map((show: any) => {
+      if (show.id === id) {
+        show.is_wished = true;
+      }
+      return show;
+    });
   }
-
 
   search() {
     this.carousel = false;
-    let me: any = localStorage.getItem('me');
-    if (me) {
-      me = JSON.parse(me);
+    const me = this.userService.getMe();
+    if (!me) {
+      return;
     }
     fetch('http://localhost:3000/api/show/search/tvshow', {
       method: 'POST',
@@ -77,21 +70,18 @@ export class SearchBarComponent implements OnInit {
 
         localStorage.setItem('searchTerm', this.searchTerm);
         localStorage.setItem('searchResults', JSON.stringify(this.shows));
-         });
+      });
   }
 
-
   getPoster(path: string) {
-
-    if (!path ) {
-return 'https://via.placeholder.com/300x450?text=No+image+available';
+    if (!path) {
+      return 'https://via.placeholder.com/300x450?text=No+image+available';
     }
-  
-    
+
     return 'https://image.tmdb.org/t/p/w300/' + path;
   }
 
   scrollToTop() {
-  window.scrollTo(0, 0);
-}
+    window.scrollTo(0, 0);
+  }
 }

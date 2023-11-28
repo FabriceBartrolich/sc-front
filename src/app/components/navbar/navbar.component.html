@@ -17,7 +17,7 @@
       <li *ngIf="isLoggedIn()">
         <a [routerLink]="['/show-wishes']">Séries à voir</a>
       </li>
-      <li>
+      <li *ngIf="!isLoggedIn()">
         <a [routerLink]="['/subscribe']">Inscription</a>
       </li>
       <li *ngIf="!isLoggedIn()">

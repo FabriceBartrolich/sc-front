@@ -32,3 +32,47 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+@media screen and (max-width: 630px) {
+  h2 {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  a {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  h2 {
+    font-size: 0.9rem;
+  }
+
+  p {
+    font-size: 0.8rem;
+  }
+
+  a {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  h2 {
+    font-size: 0.7rem;
+  }
+
+  p {
+    font-size: 0.7rem;
+  }
+
+  a {
+    font-size: 0.7rem;
+  }
+}

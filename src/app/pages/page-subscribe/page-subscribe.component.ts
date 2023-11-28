@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,8 +12,30 @@ export class PageSubscribeComponent {
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
+  heroForm : any;
 
   constructor(private router: Router) { }
+
+  ngOnInit(): void {
+
+  
+  this.heroForm = new FormGroup({
+    name: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+    ]),
+    alterEgo: new FormControl(''),
+    power: new FormControl('', Validators.required),
+  });
+}
+
+get name() {
+  return this.heroForm.get('name');
+}
+
+get power() {
+  return this.heroForm.get('power');
+}
   signUp() {
 
     if (this.password !== this.confirmPassword) {
@@ -36,7 +59,7 @@ export class PageSubscribeComponent {
       redirect: 'follow'
     };
 
-    fetch("http://localhost:3000/api/auth/subscribe", requestOptions)
+    fetch("http://localhost:3000/api/auth/register", requestOptions)
       .then(response => response.json())
       .then(result => {
         console.log(result);

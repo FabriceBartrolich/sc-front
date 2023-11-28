@@ -4,6 +4,7 @@ form {
   max-width: 400px;
   background: #f7f7f7;
   padding: 20px;
+  margin-top: 40px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid #646464;
 }
@@ -43,4 +44,16 @@ button {
 
 button:hover {
   background-color: #ffd333;
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 332px) {
+  button {
+    font-size: 0.8rem;
+  }
+
+  .form-group label {
+    font-size: 1rem;
+    font-weight: bold;
+  }
 }

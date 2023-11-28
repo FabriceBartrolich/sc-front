@@ -44,4 +44,11 @@ button {
 
 button:hover {
   background-color: #ffd333;
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 332px) {
+  button {
+    font-size: 0.8rem;
+  }
 }

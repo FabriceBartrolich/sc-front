@@ -30,9 +30,13 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {}
 
   addShowViewedList(showId: number | undefined) {
-    let me: any = localStorage.getItem('me');
-    me = JSON.parse(me);
-    const userId = me.id;
+const me = this.userService.getMe();
+
+if (!me) {
+  return;
+}
+
+    const userId = me.user.id;
     if (showId === undefined) {
       console.error('Erreur: showId est undefined');
       return;
@@ -54,25 +58,19 @@ export class CardComponent implements OnInit {
           if (response.status === 401) {
             this.router.navigate(['/connect']);
             localStorage.removeItem('me');
-            return; // Ajouter un return ici pour gérer le cas 401
+            return;
           } else {
             throw new Error(
               `Échec de l'ajout de la série à la liste des séries vues !`
             );
           }
         } else {
-          return response.json(); // Continue avec le traitement de la réponse
+          return response.json();
         }
       })
       .then(() => {
         this.addViewedShow.emit(showId);
-        this.shows = this.shows.map((show: any) => {
-          if (show.id === showId) {
-            show.is_viewed = true;
-            show.is_wished = true;
-          }
-          return show;
-        });
+  
       })
       .catch((error) => {
         console.error(
@@ -86,7 +84,6 @@ export class CardComponent implements OnInit {
   }
 
   addShowWishedList(showId: number | undefined) {
-
     let me: any = localStorage.getItem('me');
     me = JSON.parse(me);
     const userId = me.id;
@@ -109,7 +106,6 @@ export class CardComponent implements OnInit {
       .then((response) => {
         if (!response.ok) {
           if (response.status === 401) {
-
             this.router.navigate(['/connect']);
             localStorage.removeItem('me');
             return; // Ajoute un return ici pour gérer le cas 401
@@ -124,13 +120,13 @@ export class CardComponent implements OnInit {
       })
       .then(() => {
         this.addWishedShow.emit(showId);
-        this.shows = this.shows.map((show: any) => {
-          if (show.id === showId) {
-            show.is_viewed = true;
-            show.is_wished = true;
-          }
-          return show;
-        });
+        // this.shows = this.shows.map((show: any) => {
+        //   if (show.id === showId) {
+        //     show.is_viewed = true;
+        //     show.is_wished = true;
+        //   }
+        //   return show;
+        // });
       })
       .catch((error) => {
         // Gérer les erreurs
@@ -145,7 +141,6 @@ export class CardComponent implements OnInit {
   }
 
   removeShowViewedList(showId: number | undefined) {
-
     // L'utilisateur est connecté
     let me: any = localStorage.getItem('me');
     me = JSON.parse(me);
@@ -168,23 +163,18 @@ export class CardComponent implements OnInit {
     })
       .then((response) => {
         if (!response.ok && response.status == 401) {
-
           this.router.navigate(['/connect']);
           localStorage.removeItem('me');
         } else if (response.ok) {
           this.removeViewedShow.emit(showId);
           this.shows = this.shows.filter((show: any) => show.id !== showId);
-
         }
         // return response.json(); // facultatif, selon le besoin de traiter la réponse
       })
-      .catch((error) => {
-
-      });
+      .catch((error) => {});
   }
 
   removeShowWishedList(showId: number | undefined) {
-
     // L'utilisateur est connecté
     let me: any = localStorage.getItem('me');
 
@@ -208,19 +198,15 @@ export class CardComponent implements OnInit {
     })
       .then((response) => {
         if (!response.ok && response.status == 401) {
-
           this.router.navigate(['/connect']);
           localStorage.removeItem('me');
         } else if (response.ok) {
           this.removeWishedShow.emit(showId);
           this.shows = this.shows.filter((show: any) => show.id !== showId);
-  
         }
         // return response.json(); // facultatif, selon le besoin de traiter la réponse
       })
-      .catch((error) => {
-
-      });
+      .catch((error) => {});
   }
 
   isLoggedIn() {
@@ -228,7 +214,6 @@ export class CardComponent implements OnInit {
   }
 
   getPoster(path: string) {
-
     if (!path) {
       return 'https://via.placeholder.com/300x450?text=No+image+available';
     }
@@ -241,7 +226,7 @@ export class CardComponent implements OnInit {
 
   goToDetails() {
     console.log(this.show);
-    
+
     this.router.navigate(['/show-details', this.show[this.idKey]]);
   }
 }

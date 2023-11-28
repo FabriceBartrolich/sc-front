@@ -72,4 +72,8 @@
   .card-container img {
     width: 16.8rem;
   }
+
+  .card-button img {
+    width: 3rem;
+  }
 }

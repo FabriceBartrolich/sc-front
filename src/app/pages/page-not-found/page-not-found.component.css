@@ -2,13 +2,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
+  justify-content: center;
+  min-height: 80vh;
+  margin: auto;
 }
 
 .image-404 {
-  max-width: 59%;
+  max-width: 50%;
   height: auto;
+  border: 2px solid #fbc500; /* Bordure solide de 2px de couleur noire */
+  border-radius: 10px; /* Coins arrondis avec un rayon de 10px */
 }
 
 .message-404 {
@@ -24,6 +27,7 @@
   background-color: #fbc500;
   color: #090a0b;
   text-decoration: none;
+  text-align: center;
   border-radius: 5px;
   font-weight: bold;
   font-size: 1rem;
@@ -33,4 +37,76 @@
 
 .button-404:hover {
   background-color: #ffd333;
+}
+
+@media screen and (max-width: 1000px) {
+  .message-404 {
+    font-size: 16px;
+  }
+
+  .container {
+    margin: auto;
+  }
+  .image-404 {
+    max-width: 65%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .message-404 {
+    font-size: 16px;
+  }
+
+  .container {
+    min-height: 70vh;
+  }
+  .image-404 {
+    max-width: 75%;
+    height: auto;
+  }
+  .button-404 {
+    width: 30%;
+    font-size: 0.7rem;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .message-404 {
+    font-size: 12px;
+  }
+
+  .container {
+    min-height: 60vh;
+  }
+  .image-404 {
+    max-width: 85%;
+    height: auto;
+  }
+  .button-404 {
+    width: 40%;
+    font-size: 0.7rem;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .message-404 {
+    font-size: 13px;
+  }
+
+  .container {
+    height: 100%;
+  }
+
+  .image-404 {
+    max-width: 90%;
+    height: auto;
+  }
+  .button-404 {
+    width: 50%;
+    font-size: 0.7rem;
+    height: auto;
+  }
 }

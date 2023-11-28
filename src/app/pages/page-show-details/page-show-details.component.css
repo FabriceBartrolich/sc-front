@@ -99,3 +99,50 @@
     transform: rotate(360deg);
   }
 }
+
+@media screen and (max-width: 1023px) {
+  .title {
+    font-size: 2em;
+  }
+}
+
+@media screen and (max-width: 926px) {
+  .title {
+    font-size: 1.5em;
+  }
+
+  .synopsis {
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (max-width: 832px) {
+  .title {
+    font-size: 1.1em;
+  }
+
+  .synopsis {
+    font-size: 0.8em;
+  }
+}
+@media screen and (max-width: 790px) {
+  .show-details-container {
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: 1.5em;
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .show-details-container {
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: 1.2em;
+    margin-top: 2rem;
+  }
+}
