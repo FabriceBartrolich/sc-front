@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Show } from 'src/app/models/show';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-card',
@@ -26,7 +27,7 @@ export class CardComponent implements OnInit {
   @Output() removeViewedShow = new EventEmitter<number>();
   @Output() removeWishedShow = new EventEmitter<number>();
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router, private toastService: ToastService) {}
   ngOnInit(): void {}
 
   addShowViewedList(showId: number | undefined) {
@@ -70,6 +71,7 @@ if (!me) {
       })
       .then(() => {
         this.addViewedShow.emit(showId);
+         this.toastService.toggle('Votre série a bien été ajoutée à votre liste de séries vues');
   
       })
       .catch((error) => {

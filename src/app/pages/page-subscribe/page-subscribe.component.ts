@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,38 +7,56 @@ import { Router } from '@angular/router';
   templateUrl: './page-subscribe.component.html',
   styleUrls: ['./page-subscribe.component.css']
 })
-export class PageSubscribeComponent {
-  username: string = '';
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
-  heroForm : any;
+export class PageSubscribeComponent implements OnInit{
 
-  constructor(private router: Router) { }
+  registerForm = new FormGroup({
+    username: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email,
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
+    confirmPassword: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
+  });
+  
+
+
+  constructor(private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-
-  
-  this.heroForm = new FormGroup({
-    name: new FormControl('', [
-      Validators.required,
-      Validators.minLength(4),
-    ]),
-    alterEgo: new FormControl(''),
-    power: new FormControl('', Validators.required),
-  });
 }
 
-get name() {
-  return this.heroForm.get('name');
-}
 
-get power() {
-  return this.heroForm.get('power');
-}
+
+  get username(): FormControl {
+    return this.registerForm.get('username') as FormControl;
+  }
+
+  get email(): FormControl {
+    return this.registerForm.get('email') as FormControl;
+  }
+
+  get password(): FormControl {
+    return this.registerForm.get('password') as FormControl;
+  }
+
+  get confirmPassword(): FormControl {
+    return this.registerForm.get('confirmPassword') as FormControl;
+  }
+
+
   signUp() {
 
-    if (this.password !== this.confirmPassword) {
+   if (this.password.value !== this.confirmPassword.value) {
       console.error("Les mots de passe ne correspondent pas.");
       return; 
     }
@@ -47,9 +65,9 @@ get power() {
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-      "username": this.username,
-      "email": this.email,
-      "password": this.password
+      "username": this.username.value,
+      "email": this.email.value,
+      "password": this.password.value
     });
 
     const requestOptions: RequestInit = {
@@ -68,6 +86,7 @@ get power() {
       })
       .catch(error => console.log('error', error));
   }
+
 
 
 

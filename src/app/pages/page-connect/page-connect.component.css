@@ -28,6 +28,18 @@ form {
   border-radius: 4px;
 }
 
+.affiche-erreur {
+  background-color: #646464;
+  color: #f7f7ff; /* Couleur du texte rouge foncé pour une meilleure lisibilité */
+  padding: 10px; /* Espace à l'intérieur de la boîte de message */
+  margin-top: 5px; /* Espace au-dessus du message d'erreur */
+  margin-bottom: 5px; /* Espace en dessous du message d'erreur */
+  border: 1px solid #fbc500; /* Bordure légèrement rouge */
+  border-radius: 4px; /* Coins arrondis */
+  font-size: 0.9em; /* Taille de police légèrement réduite */
+  text-align: left; /* Alignement du texte */
+}
+
 button {
   background-color: #fbc500;
   color: #090a0b;

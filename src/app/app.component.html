@@ -1,7 +1,10 @@
 <!--  -->
+<div *ngIf="toastService.toastMessage">{{ toastService.toastMessage }}</div>
+
 <app-navbar></app-navbar>
 
 <div style="min-height: 60vh !important">
   <router-outlet></router-outlet>
 </div>
+
 <app-footer></app-footer>

@@ -6,6 +6,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-page-connect',
@@ -13,46 +15,42 @@ import { Router } from '@angular/router';
   styleUrls: ['./page-connect.component.css'],
 })
 export class PageConnectComponent implements OnInit {
-
-
   raw!: FormGroup;
-loginForm = new FormGroup({
-      username: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(6),
-      ]),
-    });
+  loginForm = new FormGroup({
+    username: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
+  });
 
-  constructor(private router: Router, private fb: FormBuilder) {}
-  ngOnInit(): void {
-    
+  isToastVisible = false;
+
+
+  constructor(private router: Router, private fb: FormBuilder, private toastService:ToastService) {}
+  ngOnInit(): void {}
+
+  get username(): FormControl {
+    return this.loginForm.get('username') as FormControl;
   }
 
-  get username() : any {
-  
-    return this.loginForm.get('username');
+  get password(): FormControl {
+    return this.loginForm.get('password') as FormControl;
   }
-
-  get password() : any {
-    return this.loginForm.get('password');
-  }
-
 
   // onSubmit() {
   //   console.log(this.loginForm.get('username'));
-    
+
   // }
 
   login() {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
-console.log(this.username.value);
-console.log(this.password.value);
-
+    console.log(this.username.value);
+    console.log(this.password.value);
 
     const raw = JSON.stringify({
       username: this.username.value,
@@ -72,6 +70,7 @@ console.log(this.password.value);
         console.log('mon info => ', requestOptions);
         localStorage.setItem('me', JSON.stringify(result));
         // Redirigez l'utilisateur vers la page d'accueil ici
+        this.toastService.toggle('Vous êtes connecté');
         this.router.navigate(['/home']);
       })
       .catch((error) => console.log('error', error));
@@ -85,10 +84,20 @@ console.log(this.password.value);
     return false;
   }
 
-  getCurrentUser(): any {
-    const me: any = localStorage.getItem('me');
-    const parsedMe = JSON.parse(me);
-
-    return parsedMe;
+  getCurrentUser(): User | null{
+    const me: string | null = localStorage.getItem('me');
+    if (me) {
+      try {
+        const parsedMe: User = JSON.parse(me);
+        return parsedMe;
+      } catch (error) {
+        console.error('Erreur lors du parsing de l’utilisateur :', error);
+        // Gestion d'une erreur de parsing, retourne null ou gère autrement
+        return null;
+      }
+    }
+    return null;
   }
+
+
 }
