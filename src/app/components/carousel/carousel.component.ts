@@ -41,12 +41,7 @@ export class CarouselComponent implements OnInit, OnDestroy {
     this.currentSlideIndex = (this.currentSlideIndex - 1 + this.slides.length) % this.slides.length;
   }
 
-  // updateActiveSlide() {
-  //   this.slides = this.slides.map((slide, index) => ({
-  //     ...slide,
-  //     active: index === this.currentSlideIndex
-  //   }));
-  // }
+
   getPoster(path: string) {
 
     if (!path ) {
@@ -64,11 +59,10 @@ return 'https://via.placeholder.com/300x450?text=No+image+available';
         this.popularShows = response.splice(1, 7);
         
         const excludedPath = '/7dFZJ2ZJJdcmkp05B9NWlqTJ5tq.jpg';
-        // this.popularShows = response.posterPaths.filter(posterPath => posterPath !== excludedPath);
-        // console.table('popular => '+ this.popularShows[2])
+  
 
         this.setSlides();
-        // this.getRandomSlides();
+    
       },
       (error) => {
         console.error('Erreur lors de la récupération des séries populaires', error);
@@ -78,7 +72,7 @@ return 'https://via.placeholder.com/300x450?text=No+image+available';
 
     setSlides() {
       const baseUrl = 'https://image.tmdb.org/t/p/w500/';
-    // this.slides = [...this.popularShows];
+  
     this.slides = this.popularShows;
 
   }

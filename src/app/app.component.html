@@ -1,5 +1,7 @@
-<!--  -->
-<div *ngIf="toastService.toastMessage">{{ toastService.toastMessage }}</div>
+<!-- <div class="app-container"> -->
+<div [class]="getToastClass()" *ngIf="toastService.toastMessage">
+  {{ toastService.toastMessage.title }}, {{ toastService.toastMessage.type }}
+</div>
 
 <app-navbar></app-navbar>
 
@@ -8,3 +10,4 @@
 </div>
 
 <app-footer></app-footer>
+<!-- </div> -->

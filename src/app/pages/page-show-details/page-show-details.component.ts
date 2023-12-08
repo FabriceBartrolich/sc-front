@@ -42,7 +42,7 @@ export class PageShowDetailsComponent implements OnInit {
 
       
       this.showDetails = result;
-      // Maintenant, les détails de la série sont stockés dans showDetails
+  
     })
     .catch((error) => {
       console.error('Erreur lors de la récupération des détails du show', error);

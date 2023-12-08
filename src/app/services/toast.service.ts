@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
 
+interface ToastMessage {
+  title: string;
+  type: string;
+}
 @Injectable({
   providedIn: 'root',
 })
 export class ToastService {
   constructor() {}
 
-  toastMessage = '';
+  toastMessage : ToastMessage | null = null;
 
-  toggle(message : string) {
+  toggle(message : ToastMessage) {
     // this.isToastVisible = !this.isToastVisible;
     this.toastMessage = message;
     setTimeout(() => {
-      this.toastMessage = '';
-    }, 4000);
+      this.toastMessage = null;
+    }, 3000);
   }
 }

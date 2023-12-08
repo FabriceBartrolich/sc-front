@@ -27,15 +27,19 @@ export class CardComponent implements OnInit {
   @Output() removeViewedShow = new EventEmitter<number>();
   @Output() removeWishedShow = new EventEmitter<number>();
 
-  constructor(private userService: UserService, private router: Router, private toastService: ToastService) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private toastService: ToastService
+  ) {}
   ngOnInit(): void {}
 
   addShowViewedList(showId: number | undefined) {
-const me = this.userService.getMe();
+    const me = this.userService.getMe();
 
-if (!me) {
-  return;
-}
+    if (!me) {
+      return;
+    }
 
     const userId = me.user.id;
     if (showId === undefined) {
@@ -71,16 +75,15 @@ if (!me) {
       })
       .then(() => {
         this.addViewedShow.emit(showId);
-         this.toastService.toggle('Votre série a bien été ajoutée à votre liste de séries vues');
-  
-      })
-      .catch((error) => {
-        console.error(
-          `Erreur lors de l'ajout de la série à la liste des séries vues:`,
-          error
+        this.toastService.toggle(
+          { title: 'Votre série a bien été ajoutée à votre liste de séries vues', type: 'success' }
+          
         );
-        alert(
-          `Une erreur est survenue lors de l'ajout de la série à la liste des séries vues.`
+      })
+      .catch(() => {
+        this.toastService.toggle(
+          { title: `Une erreur est survenue lors de l'ajout de la série à la liste des séries vues`, type: 'error'}
+
         );
       });
   }
@@ -122,22 +125,16 @@ if (!me) {
       })
       .then(() => {
         this.addWishedShow.emit(showId);
-        // this.shows = this.shows.map((show: any) => {
-        //   if (show.id === showId) {
-        //     show.is_viewed = true;
-        //     show.is_wished = true;
-        //   }
-        //   return show;
-        // });
+        this.toastService.toggle(
+          { title: 'Votre série a bien été ajoutée à votre liste de séries à voir', type: 'success'}
+               );
       })
-      .catch((error) => {
-        // Gérer les erreurs
-        console.error(
-          `Erreur lors de l'ajout de la série à la liste des séries à voir :`,
-          error
-        );
-        alert(
-          `Une erreur est survenue lors de l'ajout de la série à la liste des séries à voir.`
+      .catch(() => {
+ 
+
+        this.toastService.toggle(
+          { title: `Une erreur est survenue lors de l'ajout de la série à la liste des séries à voir`, type: 'error'}
+
         );
       });
   }
@@ -167,13 +164,15 @@ if (!me) {
         if (!response.ok && response.status == 401) {
           this.router.navigate(['/connect']);
           localStorage.removeItem('me');
+           this.toastService.toggle({title: 'Votre série n\'a pu être supprimée de votre liste de séries vues', type: 'error'});
         } else if (response.ok) {
           this.removeViewedShow.emit(showId);
+          this.toastService.toggle({title: 'Votre série a bien été supprimée de votre liste de séries vues', type: 'success'});
           this.shows = this.shows.filter((show: any) => show.id !== showId);
         }
-        // return response.json(); // facultatif, selon le besoin de traiter la réponse
+
       })
-      .catch((error) => {});
+    
   }
 
   removeShowWishedList(showId: number | undefined) {
@@ -202,8 +201,10 @@ if (!me) {
         if (!response.ok && response.status == 401) {
           this.router.navigate(['/connect']);
           localStorage.removeItem('me');
+          this.toastService.toggle({title: 'Votre série n\'a pu être supprimée de votre liste de séries à voir', type: 'error'});
         } else if (response.ok) {
           this.removeWishedShow.emit(showId);
+          this.toastService.toggle({title: 'Votre série a bien été supprimée de votre liste de séries à voir', type: 'success'});
           this.shows = this.shows.filter((show: any) => show.id !== showId);
         }
         // return response.json(); // facultatif, selon le besoin de traiter la réponse

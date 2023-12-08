@@ -48,49 +48,7 @@ export class PageShowWishesComponent {
     return 'https://image.tmdb.org/t/p/w300/' + path;
   }
 
-//   removeShowWishedList(showId: number) {
 
-//     // L'utilisateur est connecté
-//     let me: any = localStorage.getItem('me');
-
-//     me = JSON.parse(me);
-//     // On récupère le token
-
-//     // On récupère l'id de l'utilisateur
-//     const userId = me.id;
-//     // On récupère l'id du show
-
-//     fetch(`http://localhost:3000/api/show/wished/${me.user.id}/${showId}`, {
-//       method: 'DELETE',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         Authorization: `Bearer ${me.token}`,
-//       },
-//       body: JSON.stringify({
-//         userId,
-//         showId,
-//       }),
-//     }).then((response) => {
-//   if (!response.ok && response.status == 401) {
-
-//     this.router.navigate(['/connect']);
-//     localStorage.removeItem('me');
-//   } else if (response.ok) {
-//     this.shows = this.shows.filter((show: any) => show.id !== showId);
-//   }
-//   // return response.json(); // facultatif, selon le besoin de traiter la réponse
-// })
-// .catch((error) => {
-
-// });
-// }
-  //   .then(() => {
-  //     // Enlever le show de la liste des shows
-  //     this.shows = this.shows.filter((show: any) => {
-  //       return show.id !== showId;
-  //     });
-  //   });
-  // }
 markShowAsRemovedWished(showId: number) {
   this.shows = this.shows.filter((show: any) => show.id !== showId);
 }

@@ -3,3 +3,29 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.myToast {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000; /* Assez élevé pour être au-dessus des autres éléments */
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid #fbc500;
+}
+
+.success {
+  background-color: #646464;
+  color: #fbc500;
+}
+
+.error {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+.app-container {
+  position: relative; /* Permet au toast de se positionner correctement */
+}

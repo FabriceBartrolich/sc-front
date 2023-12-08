@@ -13,13 +13,7 @@ export class NavbarComponent  {
 
   constructor(private userService: UserService, private router: Router) { }
 
-  // ngOnInit() {
-  //   this.checkLoginStatus();
-  // }
 
-  // checkLoginStatus() {
-  //   this.isConnected = !!localStorage.getItem('me'); // '!!' convertit la valeur en booléen
-  // }
 
   isLoggedIn() {
     return this.userService.isLoggedIn();

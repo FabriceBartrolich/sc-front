@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-page-subscribe',
@@ -30,7 +31,7 @@ export class PageSubscribeComponent implements OnInit{
   
 
 
-  constructor(private router: Router, private fb: FormBuilder) { }
+  constructor(private router: Router, private fb: FormBuilder, private toastService:ToastService) { }
 
   ngOnInit(): void {
 }
@@ -80,7 +81,7 @@ export class PageSubscribeComponent implements OnInit{
     fetch("http://localhost:3000/api/auth/register", requestOptions)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
+        this.toastService.toggle( {title : 'Votre compte a bien été créé. Vous pouvez maintenant vous connecter', type: 'success'} );
 
         this.router.navigate(['/connect']);
       })

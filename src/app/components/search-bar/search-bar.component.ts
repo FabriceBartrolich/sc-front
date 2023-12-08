@@ -51,10 +51,11 @@ export class SearchBarComponent implements OnInit {
   }
 
   search() {
+   
     this.carousel = false;
     const me = this.userService.getMe();
     if (!me) {
-      return;
+      // return;
     }
     fetch('http://localhost:3000/api/show/search/tvshow', {
       method: 'POST',

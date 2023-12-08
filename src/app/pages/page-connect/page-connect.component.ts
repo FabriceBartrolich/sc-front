@@ -69,8 +69,8 @@ export class PageConnectComponent implements OnInit {
       .then((result) => {
         console.log('mon info => ', requestOptions);
         localStorage.setItem('me', JSON.stringify(result));
-        // Redirigez l'utilisateur vers la page d'accueil ici
-        this.toastService.toggle('Vous êtes connecté');
+
+        this.toastService.toggle( {title : 'Vous êtes bien connecté', type: 'success'} );
         this.router.navigate(['/home']);
       })
       .catch((error) => console.log('error', error));
@@ -92,7 +92,7 @@ export class PageConnectComponent implements OnInit {
         return parsedMe;
       } catch (error) {
         console.error('Erreur lors du parsing de l’utilisateur :', error);
-        // Gestion d'une erreur de parsing, retourne null ou gère autrement
+
         return null;
       }
     }
